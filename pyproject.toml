@@ -1,0 +1,18 @@
+[project]
+name = "dissig"
+version = "0.1.0"
+dependencies = []
+description = "Default template for PDM package"
+authors = [
+    {name = "TYLERSFOSTER", email = "tylerisnotavailable@gmail.com"},
+]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.setuptools]
+packages = ["dissig"]
+package-dir = {"" = "src"}
+
+[tool.pdm]
+distribution = false
