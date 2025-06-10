@@ -1,0 +1,9 @@
+# Inside docs/.gitignore
+*.aux
+*.log
+*.toc
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
