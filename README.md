@@ -1,12 +1,33 @@
-<picture>
-  <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
-  <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
-  <img src="docs/images/dissig_logo_dark.jpg" alt="DisSig Logo">
-</picture>
+<p style="font-size: 1pt;">
+  <picture style="font-size: 12em;">
+    <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/dissig_logo_dark.jpg" alt="DisSig Logo"
+    style="height: 16em;">
+  </picture>
+</p>
 
 # **Tonal Structures**<br><small>*of*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
 
-A
+## Harmonic movement between discrete signals
+
+### Euler's *tonnetz*
+[...]
+
+<figure style="font-size: 1pt; text-align: center;">
+  <picture style="font-size: 12em;">
+    <source srcset="docs/images/euler_tonnetz_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/euler_tonnetz_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/euler_tonnetz_dark.jpg" alt="Euler tonnetz" style="height: 11em;">
+  </picture>
+  <figcaption style="font-size: 12pt; margin-top: 0.5em;">Euler's tone network ("tonnetz") diagram</figcaption>
+</figure>
+
+
+
+[...]
+
+### Tonnetze
 
 ## 📦 Project Structure
 ```bash

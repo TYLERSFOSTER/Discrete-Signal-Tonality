@@ -1,7 +1,7 @@
 [project]
 name = "dissig"
 version = "0.1.0"
-dependencies = ["pylint>=3.3.7", "pytest>=8.4.0", "numpy>=2.3.0", "torch>=2.7.1"]
+dependencies = ["pylint>=3.3.7", "pytest>=8.4.0", "numpy>=2.3.0", "torch>=2.7.1", "pytest-pythonpath>=0.7.3"]
 description = "Default template for PDM package"
 authors = [
     {name = "TYLERSFOSTER", email = "tylerisnotavailable@gmail.com"},
@@ -16,3 +16,6 @@ package-dir = {"" = "src"}
 
 [tool.pdm]
 distribution = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

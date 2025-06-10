@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:0a4e239cfeb9e0cb11b7db8de479dca17c467a517d0df08d19d69fd52775d9d4"
+content_hash = "sha256:41ddc4356236143def3c9a02b2baaacd087b521752f94812576bb56150c2acef"
 
 [[metadata.targets]]
 requires_python = "==3.13.*"
@@ -493,6 +493,19 @@ dependencies = [
 files = [
     {file = "pytest-8.4.0-py3-none-any.whl", hash = "sha256:f40f825768ad76c0977cbacdf1fd37c6f7a468e460ea6a0636078f8972d4517e"},
     {file = "pytest-8.4.0.tar.gz", hash = "sha256:14d920b48472ea0dbf68e45b96cd1ffda4705f33307dcc86c676c1b5104838a6"},
+]
+
+[[package]]
+name = "pytest-pythonpath"
+version = "0.7.3"
+requires_python = ">=2.6, <4"
+summary = "pytest plugin for adding to the PYTHONPATH from command line or configs."
+groups = ["default"]
+dependencies = [
+    "pytest>=2.5.2",
+]
+files = [
+    {file = "pytest-pythonpath-0.7.3.tar.gz", hash = "sha256:63fc546ace7d2c845c1ee289e8f7a6362c2b6bae497d10c716e58e253e801d62"},
 ]
 
 [[package]]
