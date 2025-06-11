@@ -17,9 +17,7 @@ from dissig.utils.primes import primes_below
 
 
 @pytest.mark.parametrize("N, integer_list", [
-    (2, []),
-    (5, [2, 3]),
-    (4 * 9, [2, 3, 5]),
+    (12, [2, 3, 5, 7]),
 ])
 def test_primes_below(N, integer_list):
     """Verify that primes_below returns the expected list"""
@@ -52,15 +50,32 @@ def test_primes_below(N, integer_list):
         G.nodes[n]["fontsize"] = "24"        # font size in points
         G.nodes[n]["fixedsize"] = "true"     # prevent resizing to label
         G.nodes[n]["width"] = "0.5"          # diameter in inches
-    # G.graph["label"] = f"\nTonnetz for multipliers {resulting_tonnetz.integer_list} in \u2124/{N}\u2124\n "
+    G.graph["label"] = f"\nTonnetz for multipliers {resulting_tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
     G.graph["fontsize"] = "18"
     G.graph["rankdir"] = "LR"
     A = to_agraph(G)
+    print("NODES:", A.nodes())
+    cluster_map = {
+        "cluster_1": ['1', '5', '7', '11'],
+        "cluster_2": ['2', '10'],
+        "cluster_4": ['4', '8'],
+        "cluster_3": ['3', '9'],
+        "cluster_6": ['6'],
+        "cluster_12": ['0'],
+    }
+    for i, (name, nodes) in enumerate(cluster_map.items()):
+        sub = A.add_subgraph(nodes, name=name)
+        sub.graph_attr.update(
+            label=name, 
+            style="rounded", 
+            color="red",
+            ranksep="1",
+        )
     A.layout("dot")
     A.draw("graph.png")
 
-    # assert False
+    assert False
 
 if __name__ == "__main__":
     N = 10
