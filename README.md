@@ -9,6 +9,8 @@
 
 # **Tonal Structures**<br><small>*for*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
 
+Welcome to `disig`, a Python package that allows users to compute and manipulate [...]
+
 ## Harmonic movement between discrete signals
 
 ### Euler's *tonnetz*
@@ -20,7 +22,18 @@
     <source srcset="docs/images/euler_tonnetz_light.jpg" media="(prefers-color-scheme: light)">
     <img src="docs/images/euler_tonnetz_dark.jpg" alt="Euler tonnetz" style="height: 11em;">
   </picture>
-  <figcaption style="font-size: 12pt; margin-top: 0.5em;">Euler's tone network ("tonnetz") diagram</figcaption>
+  <figcaption style="font-size: 12pt; margin-top: 0.5em;">Euler's tone network ("tonnetz")</figcaption>
+</figure>
+
+[...]
+
+<figure style="font-size: 1pt; text-align: center;">
+  <picture style="font-size: 12em;">
+    <source srcset="docs/images/euler_modern_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/euler_modern_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/euler_modern_dark.jpg" alt="Euler modernized" style="height: 20em;">
+  </picture>
+  <figcaption style="font-size: 12pt; margin-top: 0.5em;">Modernized version of Euler's tone network</figcaption>
 </figure>
 
 
