@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 from dissig.utils.primes import primes_below, prime_divisors, prime_powers
-from dissig.utils.arithmetic import macro_lattice
+from dissig.utils.arithmetic import unit_vectors, macro_lattice
 
 __all__ = [
     "primes_below",
     "prime_divisors",
     "prime_powers",
+    "unit_vectors",
     "macro_lattice",
 ]
