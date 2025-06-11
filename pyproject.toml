@@ -10,6 +10,10 @@ dependencies = [
     "tqdm>=4.67.1",
     "pandas>=2.3.0",
     "networkx>=3.5",
+    "matplotlib>=3.10.3",
+    "pygraphviz>=1.14",
+    "pyvis>=0.3.2",
+    "scipy>=1.15.3",
 ]
 description = "Default template for PDM package"
 authors = [

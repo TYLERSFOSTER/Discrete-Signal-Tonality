@@ -6,10 +6,10 @@ Contains the central logic and primary interface for the `dissig` package.
 from __future__ import annotations
 
 #from dissig.utils import
-from .signal import Signal
+from .signals import Signal
 
-class DissigEngine:
-    """Core class representing the main analysis/synthesis engine."""
+# class DissigEngine:
+#     """Core class representing the main analysis/synthesis engine."""
 
     # def __init__(self, config):
 

@@ -20,14 +20,20 @@ class Tonnetz():
         integer_list (list[int]): List of integer multipliers used to generate edges between vertices.
         network (nx.DiGraph): A NetworkX directed graph representing the Tonnetz.
     """
-    def __init__(self, sample_count : int, integer_list : list[int]):
+    def __init__(self, sample_count : int, integer_list : list[int], include_loops : bool=False, include_zero : bool=False):
         assert isinstance(sample_count, int)
         assert sample_count >= 1
         assert isinstance(integer_list, list)
         assert all([isinstance(entry, int) for entry in integer_list])
+        assert isinstance(include_loops, bool)
+        assert isinstance(include_zero, bool)
 
         self.sample_count = sample_count
         self.integer_list = integer_list
+
+        self.include_loops = include_loops
+        self.include_zero = include_zero
+
         self.network = self.generate_network(self.integer_list)
 
     def generate_weighted_edges(self, new_integer_list : list[int]) -> list[tuple[int, int, int]]:
@@ -54,6 +60,10 @@ class Tonnetz():
             for interval_multiplier in new_integer_list:
                 target_vertex = (source_vertex * interval_multiplier) % self.sample_count
                 current_edge = (source_vertex, target_vertex, interval_multiplier)
+
+                if not self.include_loops and source_vertex == target_vertex:
+                    continue
+
                 new_weighted_edges.append(current_edge)
             
         return new_weighted_edges
@@ -63,7 +73,11 @@ class Tonnetz():
         Generate a directed graph where all vertices from 0 to sample_count - 1 are included,
         even if they are not connected by any edges.
         """
-        vertices = range(self.sample_count)
+        if self.include_zero:
+            vertices = range(self.sample_count)
+        else:
+            vertices = range(1, self.sample_count)
+
         weighted_edges = self.generate_weighted_edges(new_integer_list)
         
         new_network = nx.DiGraph()
