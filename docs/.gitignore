@@ -7,3 +7,6 @@
 *.blg
 *.fls
 *.fdb_latexmk
+
+# macOS system file
+.DS_Store

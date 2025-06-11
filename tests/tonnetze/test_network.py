@@ -19,7 +19,7 @@ from dissig.utils.primes import primes_below
 @pytest.mark.parametrize("N, integer_list", [
     (2, []),
     (5, [2, 3]),
-    (35, [3, 5, 7, 11]),
+    (4 * 9, [2, 3, 5]),
 ])
 def test_primes_below(N, integer_list):
     """Verify that primes_below returns the expected list"""
@@ -52,10 +52,10 @@ def test_primes_below(N, integer_list):
         G.nodes[n]["fontsize"] = "24"        # font size in points
         G.nodes[n]["fixedsize"] = "true"     # prevent resizing to label
         G.nodes[n]["width"] = "0.5"          # diameter in inches
-    G.graph["label"] = f"\nTonnetz for multipliers {resulting_tonnetz.integer_list} in \u2124/{N}\u2124\n "
+    # G.graph["label"] = f"\nTonnetz for multipliers {resulting_tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
     G.graph["fontsize"] = "18"
-    G.graph["rankdir"] = "UD"
+    G.graph["rankdir"] = "LR"
     A = to_agraph(G)
     A.layout("dot")
     A.draw("graph.png")

@@ -38,6 +38,19 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
   </figcaption>
 </figure>
 
+[...]
+
+<figure style="text-align: center;">
+  <picture>
+    <source srcset="docs/images/tonnetz_36_[2,3,5]_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/tonnetz_36_[2,3,5]_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/tonnetz_36_[2,3,5]_dark.jpg" alt="Z/36Z tonnetz" style="height: 15em;">
+  </picture>
+  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
+    Tonnetz for discrete audio signals with 36 samples
+  </figcaption>
+</figure>
+
 
 
 [...]
