@@ -214,3 +214,10 @@ cython_debug/
 *.nav
 *.snm
 .DS_Store
+
+# Python version file (used by pyenv, optional)
+.python-version
+
+# Recursively ignore all __pycache__ directories
+**/__pycache__/
+

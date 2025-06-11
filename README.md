@@ -7,7 +7,7 @@
   </picture>
 </p>
 
-# **Tonal Structures**<br><small>*of*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
+# **Tonal Structures**<br><small>*for*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
 
 ## Harmonic movement between discrete signals
 

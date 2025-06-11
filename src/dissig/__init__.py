@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 # from .core import DissigEngine
-from .signal.discrete import Signal
+from .signals.discrete import Signal
 from .utils.primes import primes_below
 
 __all__ = [
