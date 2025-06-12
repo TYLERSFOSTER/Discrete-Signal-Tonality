@@ -88,6 +88,19 @@ class Signal():
         return value
 
 
+    def extract_real(self, normalize=False) -> list[float]:
+        real_signal = [float(value.real) for value in self.underlying_signal]
+
+        max_real_value = max(real_signal)
+        min_real_value = min(real_signal)
+        peak_value = max(max_real_value, abs(min_real_value))
+
+        if normalize:
+            real_signal = [float(value/(peak_value + 1e-8)) for value in real_signal]
+
+        return real_signal
+
+
 def character_signal(multiplier : int, N : int) -> Signal:
     """
     Construct a character signal from the exponential character χ(t) = exp(2πi · multiplier · t / N).

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dissig.tonnetze.network import Tonnetz
+from dissig.tonnetze.networks import Tonnetz
 from dissig.tonnetze.visualizers import nx_viz
 
 if __name__ == "__main__":

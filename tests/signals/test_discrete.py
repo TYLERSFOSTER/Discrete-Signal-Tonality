@@ -95,3 +95,19 @@ def test_character_signal(multiplier, N, expected_length):
     for z in result.underlying_signal:
         assert isinstance(z, complex)
         assert np.isclose(abs(z), 1.0)
+
+
+@pytest.mark.parametrize(
+    "input_values, normalize, expected",
+    [
+        ([1+2j, 2+0j, -3+1j], False, [1.0, 2.0, -3.0]),
+        ([1+2j, 2+0j, -3+1j], True, [1.0/3, 2.0/3, -1.0]),
+        ([0j, 0j, 0j], False, [0.0, 0.0, 0.0]),
+        ([0j, 0j, 0j], True, [0.0, 0.0, 0.0]),  # no division by zero because of 1e-8
+        ([-1-1j, -2-2j, -0.5-0.5j], True, [-0.5, -1.0, -0.25])
+    ]
+)
+def test_extract_real(input_values, normalize, expected):
+    signal = Signal(input_values)
+    result = signal.extract_real(normalize=normalize)
+    assert all(abs(r - e) < 1e-6 for r, e in zip(result, expected))

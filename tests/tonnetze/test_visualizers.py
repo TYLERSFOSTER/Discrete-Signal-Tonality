@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, PropertyMock
 from pathlib import Path
 
 from dissig.tonnetze.visualizers import nx_viz
@@ -26,23 +26,26 @@ def test_nx_viz(arithmetic_clusters, expected_cluster_called, tmp_path):
     mock_unit_clusters = {"cluster1": [0, 1], "cluster2": [2]}
 
     with patch("dissig.tonnetze.visualizers.to_agraph", return_value=mock_agraph) as patch_agraph, \
-         patch("dissig.tonnetze.visualizers.unit_clusters", return_value=mock_unit_clusters) as patch_clusters, \
-         patch("dissig.tonnetze.visualizers.Path") as patch_path:
+        patch("dissig.tonnetze.visualizers.unit_clusters", return_value=mock_unit_clusters) as patch_clusters, \
+        patch("dissig.tonnetze.visualizers.Path") as mock_path_cls:
 
-        # --- Patch Path resolution to avoid actual disk writing ---
-        mock_path_obj = MagicMock(spec=Path)
-        patch_path.return_value = mock_path_obj
-        mock_path_obj.resolve.return_value.parents.__getitem__.return_value = tmp_path
+        # Set up fake Path resolution tree
+        mock_resolved = MagicMock(spec=Path)
+        mock_src = MagicMock(spec=Path)
+        mock_project_root = tmp_path
 
-        # --- Run function ---
+        type(mock_resolved).name = PropertyMock(side_effect=["visualizers.py", "tonnetze", "dissig", "src"])
+        type(mock_resolved).parent = PropertyMock(side_effect=[MagicMock(), MagicMock(), mock_src, mock_project_root])
+
+        mock_path_cls.return_value = MagicMock(resolve=MagicMock(return_value=mock_resolved))
+
         nx_viz(tonnetz, "my_test_graph", arithmetic_clusters=arithmetic_clusters)
 
-        # --- Check image was rendered and saved ---
         assert mock_agraph.layout.called
-        assert mock_agraph.draw.call_count >= 1  # At least one draw (maybe two)
+        assert mock_agraph.draw.call_count >= 1
 
-        # --- Check clustering was called or not ---
         if expected_cluster_called:
             patch_clusters.assert_called_once_with(12)
         else:
             patch_clusters.assert_not_called()
+

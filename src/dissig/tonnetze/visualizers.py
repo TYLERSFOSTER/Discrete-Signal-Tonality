@@ -77,7 +77,7 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     A.layout("dot")
     A.draw("graph.png")
 
-    project_root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
     output_dir = project_root / "results" / "tonnetze_visuals"
     output_dir.mkdir(parents=True, exist_ok=True)
 
