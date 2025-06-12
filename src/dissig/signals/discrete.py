@@ -1,38 +1,37 @@
 """
 dissig.signal.discrete
 
-This module defines the `Signal` class, representing a finite-length discrete audio signal.
-It provides basic arithmetic and structural operations, including modular time scaling.
+This module defines the `Signal` class, representing a finite-length discrete-time signal.
+It includes modular time-domain operations and utility constructors for real and character signals.
 """
 from __future__ import annotations
 
-import numbers
-import math
+import numpy as np
 
 from dissig.utils.arithmetic import multiplicative_units
 
 class Signal():
     """
-    A class representing a discrete-time, finite-length signal as a list of numeric samples.
+    A discrete-time, finite-length signal represented by a list of complex-valued samples.
 
     Attributes:
-        sample_count (int): The total number of samples in the signal.
-        underlying_signal (list[float]): The list of signal sample values.
-        ring_units (list[int]): List of integers in ℤ/sample_countℤ that are coprime to sample_count.
+        sample_count (int): Number of samples in the signal.
+        underlying_signal (list[complex]): The signal values.
+        ring_units (list[int]): Multiplicative units in ℤ/sample_countℤ.
     """
-    def __init__(self, sample_list : list[float]):
+    def __init__(self, sample_list : list[complex]):
         """
-        Initialize a Signal from a list of numeric samples.
+        Constructs a Signal object from a list of complex samples.
 
         Args:
-            sample_list (list[float]): A non-empty list of numeric values representing signal samples.
+            sample_list (list[complex]): Non-empty list of complex numbers.
 
         Raises:
-            AssertionError: If sample_list is not a list of numbers or is empty.
+            AssertionError: If the input is not a list of complex numbers or is empty.
         """
-        assert len(sample_list) >= 1
         assert isinstance(sample_list, list)
-        assert all([isinstance(entry, numbers.Number) for entry in sample_list])
+        assert len(sample_list) >= 1
+        assert all([isinstance(entry, (complex)) for entry in sample_list])
 
         self.sample_count = len(sample_list)
         self.underlying_signal = sample_list
@@ -41,27 +40,95 @@ class Signal():
 
     def scale_time_by(self, multiplier : int) -> Signal:
         """
-        Return a new signal with its time axis scaled modularly by the given integer multiplier.
+        Return a new signal with time rescaled modularly by the given multiplier.
 
-        This operation is equivalent to resampling the signal by applying a modular
-        transformation to the sample indices: t ↦ multiplier * t mod N.
+        This performs modular index mapping t ↦ multiplier · t mod N, where N is the signal length.
 
         Args:
-            multiplier (int): The integer multiplier to apply to the time axis.
+            multiplier (int): Integer multiplier to apply in ℤ/Nℤ.
 
         Returns:
-            Signal: A new Signal object with time scaled by the given multiplier.
+            Signal: The rescaled signal.
 
         Raises:
-            AssertionError: If multiplier is not an integer.
+            AssertionError: If the multiplier is not an integer.
         """
         assert isinstance(multiplier, int)
 
         new_sample_list = [
-            self.underlying_signal[(multiplier * idx)%self.sample_count]
+            self.underlying_signal[(multiplier * idx)%len(self)]
             for idx in range(self.sample_count)
         ]
 
         new_signal = Signal(new_sample_list)
 
         return new_signal
+
+    def __len__(self):
+        """Return the number of samples in the signal."""
+        return self.sample_count
+    
+    def forward(self, idx : int) -> complex:
+        """
+        Retrieve the value at index `idx` modulo the signal length.
+
+        Args:
+            idx (int): Index to access (wrapped mod N).
+
+        Returns:
+            complex: Sample value at the modular index.
+
+        Raises:
+            AssertionError: If idx is not an integer.
+        """
+        assert isinstance(idx, int)
+
+        value = self.underlying_signal[idx%len(self)]
+
+        return value
+
+
+def character_signal(multiplier : int, N : int) -> Signal:
+    """
+    Construct a character signal from the exponential character χ(t) = exp(2πi · multiplier · t / N).
+
+    Args:
+        multiplier (int): Frequency multiplier.
+        N (int): Signal length; must be ≥ 1.
+
+    Returns:
+        Signal: A complex exponential signal of length N.
+
+    Raises:
+        AssertionError: If N < 1 or inputs are not integers.
+    """
+    assert isinstance(multiplier, int)
+    assert isinstance(N, int)
+    assert N >= 1
+
+    theta = multiplier * (2 * np.pi / N)
+
+    sample_list = [complex(np.exp(complex(0,1) * theta * idx)) for idx in range(N)]
+
+    output_signal = Signal(sample_list)
+
+    return output_signal
+
+
+def signal_from_real(sample_list : list[int | float]) -> Signal:
+    """
+    Construct a complex-valued Signal from a list of real numbers.
+
+    Args:
+        sample_list (list[int | float]): Real-valued samples.
+
+    Returns:
+        Signal: Signal with samples cast as complex numbers (imaginary part 0).
+    """
+    complexified_sample_list = [complex(value, 0) for value in sample_list]
+
+    resulting_signal = Signal(complexified_sample_list)
+
+    return resulting_signal
+
+    

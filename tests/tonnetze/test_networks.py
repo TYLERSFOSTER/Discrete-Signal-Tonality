@@ -1,7 +1,7 @@
 import pytest
 import networkx as nx
 
-from dissig.tonnetze.network import Tonnetz
+from dissig.tonnetze.networks import Tonnetz
 
 
 @pytest.mark.parametrize(

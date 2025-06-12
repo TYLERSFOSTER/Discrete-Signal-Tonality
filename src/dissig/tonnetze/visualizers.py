@@ -9,7 +9,7 @@ from __future__ import annotations
 from pathlib import Path
 from networkx.drawing.nx_agraph import to_agraph
 
-from dissig.tonnetze.network import Tonnetz
+from dissig.tonnetze.networks import Tonnetz
 from dissig.utils.arithmetic import unit_clusters
 
 
@@ -47,7 +47,7 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
 
     G.graph["label"] = f"\nTonnetz for multipliers {tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
-    G.graph["fontsize"] = "18"
+    G.graph["fontsize"] = "38"
     G.graph["rankdir"] = "LR"
 
     A = to_agraph(G)
@@ -58,12 +58,19 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
         cluster_map = {}
     print("CLUSTER_MAP:", cluster_map)
 
-    for _, (name, nodes) in enumerate(cluster_map.items()):
-        sub = A.add_subgraph(nodes, name=name)
+    for i, (representative, nodes) in enumerate(cluster_map.items()):
+        thing = representative.replace('cluster_', '')
+        thing = thing.replace('cluster', '')
+        thing = int(thing)
+
+        subgraph_name = f"cluster_{i}"  # must start with "cluster_"
+        sub = A.add_subgraph(nodes, name=subgraph_name)
         sub.graph_attr.update(
-            label=name,
+            label=f"orbit  (\u2124/{N}\u2124)\u002A·{thing%N}",
             style="rounded",
-            color="red",
+            color="red",          # border color
+            fontcolor="red",      # label text color
+            fontsize="30em",
             ranksep="1",
         )
 

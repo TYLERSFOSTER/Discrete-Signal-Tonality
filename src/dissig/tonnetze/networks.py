@@ -85,4 +85,3 @@ class Tonnetz():
         new_network.add_weighted_edges_from(weighted_edges)
 
         return new_network
-
