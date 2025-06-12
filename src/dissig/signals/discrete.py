@@ -9,6 +9,7 @@ from __future__ import annotations
 import numbers
 import math
 
+from dissig.utils.arithmetic import multiplicative_units
 
 class Signal():
     """
@@ -36,11 +37,7 @@ class Signal():
         self.sample_count = len(sample_list)
         self.underlying_signal = sample_list
 
-        self.ring_units = [
-            sample_number
-            for sample_number in range(self.sample_count)
-            if math.gcd(sample_number, self.sample_count) == 1
-        ]
+        self.ring_units = multiplicative_units(self.sample_count)
 
     def scale_time_by(self, multiplier : int) -> Signal:
         """
