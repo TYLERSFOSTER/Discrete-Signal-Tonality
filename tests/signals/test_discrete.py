@@ -66,13 +66,13 @@ def test_forward(samples, query_idx, expected_value):
 def test_forward_invalid_index_type():
     signal = Signal([1+0j])
     with pytest.raises(AssertionError):
-        signal.forward("not an int")
+        signal.forward("not an int") # type: ignore
 
 
 def test_scale_time_invalid_multiplier():
     signal = Signal([1+0j, 2+0j])
     with pytest.raises(AssertionError):
-        signal.scale_time_by("bad multiplier")
+        signal.scale_time_by("bad multiplier") # type: ignore
 
 
 @pytest.mark.parametrize(

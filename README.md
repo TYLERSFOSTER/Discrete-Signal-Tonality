@@ -1,4 +1,8 @@
 
+### TODO
+- print_sound functions (wav and MIDI)
+- signal-decorated tonnetz
+
 <picture>
   <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
   <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
