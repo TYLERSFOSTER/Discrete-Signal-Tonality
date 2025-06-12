@@ -1,7 +1,4 @@
 
-### TODO
-- hierarchical clustering n group orbits for better graph
-
 <picture>
   <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
   <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
@@ -40,6 +37,14 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
     Modernized version of Euler's tone network ("tonnetz")
   </figcaption>
 </figure>
+
+[...]
+
+### Modern tonnetze
+
+[...]
+
+### Tonnetze for discrete audio signals
 
 [...]
 
