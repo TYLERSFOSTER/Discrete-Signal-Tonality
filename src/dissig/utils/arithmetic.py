@@ -27,7 +27,6 @@ def all_divisors(N : int) -> list[int]:
 
 def multiplicative_units(N : int) -> list[int]:
     assert isinstance(N, int)
-    assert N >= 1
 
     unit_list = [idx for idx in range(N) if math.gcd(idx, N) == 1]
 

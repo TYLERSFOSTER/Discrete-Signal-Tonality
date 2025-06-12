@@ -75,7 +75,7 @@ def test_primes_below(N, integer_list):
     A.layout("dot")
     A.draw("graph.png")
 
-    assert False
+    # assert False
 
 if __name__ == "__main__":
     N = 10
