@@ -89,6 +89,16 @@ class Signal():
 
 
     def extract_real(self, normalize=False) -> list[float]:
+        """
+        Extracts the real parts of the complex-valued signal.
+
+        If `normalize` is True, the real values are scaled to the range [-1, 1]
+        by dividing each value by the peak absolute value in the signal.
+
+        Returns:
+            list[float]: The list of real parts from the underlying signal,
+                        optionally normalized.
+        """
         real_signal = [float(value.real) for value in self.underlying_signal]
 
         max_real_value = max(real_signal)

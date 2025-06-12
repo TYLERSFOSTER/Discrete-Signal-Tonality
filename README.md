@@ -1,6 +1,6 @@
 
 ### TODO
-- print full signal-decorated tonnetz (WAV)
+- section of README about well-understood structure of *action category* or *homotopy quotient* $$\mathbf{E}(\mathbb{Z}/\ell\mathbb{Z})\ =\ \big(\mathbb{Z}/\ell\mathbb{Z}\big)\big/\!\big/\times$$
 - print_sound functions (MIDI)
 
 <picture>

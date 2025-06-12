@@ -1,5 +1,5 @@
 """
-./src/dissig/utils/print_sound.py
+./src/dissig/io/print_sound.py
 
 This script provides functionality for converting a complex-valued signal
 to a 16-bit PCM WAV audio file by extracting and normalizing the real part
@@ -28,12 +28,13 @@ from scipy.io import wavfile
 import numpy as np
 
 from dissig.signals.discrete import Signal
+from dissig.tonnetze.networks import SignalTonnetz
 
 
 MAX_INT16 = np.iinfo(np.int16).max # maximum value for a signed 16-bit integer
 
 
-def to_wav(
+def signal_to_wav(
     signal: Signal,
     signal_max_freq: float,
     wav_duration: float,
@@ -92,3 +93,40 @@ def to_wav(
     save_path = output_dir / f"{filename}.wav"
 
     wavfile.write(save_path, wav_sample_rate, int_waveform)
+
+
+def tonnetz_to_wav(
+    signal_tonnetz: SignalTonnetz,
+    signal_max_freq: float,
+    wav_duration: float,
+    wav_sample_rate: int = 44100,
+    filename: str = "test_signal",
+) -> None:
+    """
+    Converts each signal stored at the nodes of a SignalTonnetz into a WAV file.
+
+    Each node in the Tonnetz graph is expected to have a `'signal'` attribute,
+    which is converted to audio using the `signal_to_wav` function. The resulting
+    WAV files are saved with filenames that include the node identifier.
+
+    Args:
+        signal_tonnetz (SignalTonnetz): A Tonnetz graph with signals on its nodes.
+        signal_max_freq (float): The maximum frequency to map the signal's top index to.
+        wav_duration (float): Duration of the output audio in seconds.
+        wav_sample_rate (int, optional): Sampling rate of the WAV file. Defaults to 44100.
+        filename (str, optional): Base name for the saved WAV files. Each file will be
+                                  suffixed with the node index. Defaults to "test_signal".
+
+    Returns:
+        None
+    """
+    tonnetz_nodes = signal_tonnetz.network.nodes
+    for idx in tonnetz_nodes:
+        present_signal = signal_tonnetz.network.nodes[idx]['signal']
+        signal_to_wav(
+            present_signal,
+            signal_max_freq,
+            wav_duration,
+            wav_sample_rate=wav_sample_rate,
+            filename=f"{filename}_{idx}",
+        )

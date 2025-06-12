@@ -1,12 +1,9 @@
 """
+./src/dissig/utils/arithmetic.py
 """
 from __future__ import annotations
 
 import math
-
-import numpy as np
-
-from dissig.utils.primes import prime_divisors, prime_powers
 
 
 def all_divisors(N : int) -> list[int]:
@@ -71,17 +68,4 @@ def unit_vectors(N: int) -> list[tuple[float, float]]:
 
     return vectors
 
-
-def macro_lattice(N : int) -> None:
-    # assert isinstance(N, int)
-    # assert N >= 1
-
-    # prime_divisor_list = prime_divisors(N)
-
-    # lattice_rank = len(prime_divisor_list)
-
-    # lattice_generator_pairs = unit_vectors(lattice_rank)
-    # lattice_generator_vectors = [np.array(divisor) for divisor in lattice_generator_pairs]
-
-    return None
     
