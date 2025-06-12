@@ -213,6 +213,8 @@ cython_debug/
 *.lot
 *.nav
 *.snm
+
+# macOS system file
 .DS_Store
 
 # Python version file (used by pyenv, optional)
