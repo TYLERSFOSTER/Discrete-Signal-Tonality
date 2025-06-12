@@ -1,6 +1,6 @@
 
 ### TODO
-- signal-decorated tonnetz
+- print full signal-decorated tonnetz (WAV)
 - print_sound functions (MIDI)
 
 <picture>
