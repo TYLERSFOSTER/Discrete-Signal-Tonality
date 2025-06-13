@@ -2,7 +2,7 @@
   <picture>
     <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/dissig_logo_dark.jpg" alt="tonnetzB" width="700">
+    <img src="docs/images/dissig_logo_dark.jpg" alt="tonnetzB" width="1000">
   </picture>
 </p>
 
@@ -66,13 +66,13 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 ### Large-scale structure of discrete tonnetze
 
-In any setting where we have a monoid $M$ actiong on a set $S$, and a subset $\Chi\subset M$, we can form the graph $\Gamma^{S/\Chi}_{\bullet}$ with $$\Gamma^{S/\Chi}_{0}:=\ S\text{\ \ \ \ \ \ and\ \ \ \ \ \ }\Gamma^{S/\Chi}_{1}:=\ \Chi\times S,$$ where the *source* and *target* maps $$\partial^{1}_0,\partial^{1}_1:\ \Gamma^{S/\Chi}_1\!\!\longrightarrow\Gamma^{S/\Chi}_{0}$$ that interpret each pair $(\chi,\ s)\in \Chi\times S=\Gamma^{S/\Chi}_1$ as the arrow $$s\ \!\xrightarrow{\ \ \ \chi\ \ \ }\ \!\chi s.$$
+In any setting where we have a monoid $M$ actiong on a set $S$, and a subset $X\subset M$, we can form the graph $\Gamma^{S/X}_{\bullet}$ with $$\Gamma^{S/X}_{0}:=\ S\text{\ \ \ \ \ \ and\ \ \ \ \ \ }\Gamma^{S/X}_{1}:=\ X\times S,$$ where the *source* and *target* maps $$\partial^{1}_0,\partial^{1}_1:\ \Gamma^{S/X}_1\!\!\longrightarrow\Gamma^{S/X}_{0}$$ that interpret each pair $(\chi,\ s)\in X\times S=\Gamma^{S/X}_1$ as the arrow $$s\ \!\xrightarrow{\ \ \ \chi\ \ \ }\ \!\chi s.$$
 
-In general, it's hard to "*zoom out from* $\Gamma^{S/\Chi}_{\bullet}$" to say anything substantuve about the large-scale structure of this graph. That said, there are many special casses where we can say a lot about the strucutre of this graph. In the special case that 
+In general, it's hard to "*zoom out from* $\Gamma^{S/X}_{\bullet}$" to say anything substantuve about the large-scale structure of this graph. That said, there are many special casses where we can say a lot about the strucutre of this graph. In the special case that 
 - $S=\mathbb{Z}/\ell\mathbb{Z}$, the set of integers modulo some positive integer $\ell$,
 - $M=\mathbb{Z}/\ell\mathbb{Z}$ equipped with its mutliplicative structure,
 
-we can say quite a bit about the strucutre of $\Gamma^{S/\Chi}_{\bullet}$. The positive integer $\ell$ has unique prime factorization $$\ell\ =\ p_{1}^{e_1}p_{2}^{e_2}\cdots p_{r}^{e_r}$$ The graph $\Gamma^{S/\Chi}_{\bullet}$ contains a subgraph $\text{Div}(\ell)_{\bullet}$ with $$\text{Div}(\ell)_{0}:=\{d\in\mathbb{Z}_{>0}:d\text{\ divides\ }\ell\}$$ and $$\text{Div}(\ell)_{1}:=\ \{d\xrightarrow{\ \ \ p\ \ }pd:\ pd\text{\ divides\ }\ell,\ p\text{\ prime}\}$$
+we can say quite a bit about the strucutre of $\Gamma^{S/X}_{\bullet}$. The positive integer $\ell$ has unique prime factorization $$\ell\ =\ p_{1}^{e_1}p_{2}^{e_2}\cdots p_{r}^{e_r}$$ The graph $\Gamma^{S/X}_{\bullet}$ contains a subgraph $\text{Div}(\ell)_{\bullet}$ with $$\text{Div}(\ell)_{0}:=\{d\in\mathbb{Z}_{>0}:d\text{\ divides\ }\ell\}$$ and $$\text{Div}(\ell)_{1}:=\ \{d\xrightarrow{\ \ \ p\ \ }pd:\ pd\text{\ divides\ }\ell,\ p\text{\ prime}\}$$
 
 [...]
 
