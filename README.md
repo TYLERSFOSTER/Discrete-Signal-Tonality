@@ -1,8 +1,3 @@
-
-### TODO
-- section of README about well-understood structure of *action category* or *homotopy quotient* $$\mathbf{E}(\mathbb{Z}/\ell\mathbb{Z})\ =\ \big(\mathbb{Z}/\ell\mathbb{Z}\big)\big/\!\big/\times$$
-- print_sound functions (MIDI)
-
 <picture>
   <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
   <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
@@ -67,7 +62,7 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 [...]
 
-### Tonnetze
+### Structure of multiplicative action of $\mathbb{Z}/\ell\mathbb{Z}$ on itself
 
 ## 📦 Project Structure
 ```bash
