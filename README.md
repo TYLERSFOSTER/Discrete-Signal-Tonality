@@ -66,13 +66,13 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 ### Large-scale structure of discrete tonnetze
 
-In any setting where we have a monoid $M$ actiong on a set $S$, and a subset $X\subset M$, we can form the graph $[S/\!/X]_{\ast}$ with $$[S/\!/X]_{0}:=\ S\text{\ \ \ \ \ \ and\ \ \ \ \ \ }[S/\!/X]_{1}:=\ X\times S,$$ where the *source* and *target* maps $$\partial^{1}_0,\partial^{1}_1:\ [S/\!/X]_1\!\!\longrightarrow[S/\!/X]_{0}$$ that interpret each pair $(\chi,\ s)\in X\times S=[S/\!/X]_1$ as the arrow $$s\ \!\xrightarrow{\ \ \ \chi\ \ \ }\ \!\chi s.$$
+In any setting where we have a monoid $M$ actiong on a set $S$, and a subset $X\subset M$, we can form the graph $[S//X]_{\ast}$ with $$[S//X]_{0}:=\ S\text{\ \ \ \ \ \ and\ \ \ \ \ \ }[S//X]_{1}:=\ X\times S,$$ where the *source* and *target* maps $$\partial^{1}_0,\partial^{1}_1:\ [S//X]_1\!\!\longrightarrow[S//X]_{0}$$ that interpret each pair $(\chi,\ s)\in X\times S=[S//X]_1$ as the arrow $$s\ \!\xrightarrow{\ \ \ \chi\ \ \ }\ \!\chi s.$$
 
-In general, it's hard to "*zoom out from* $[S/\!/X]_{\ast}$" to say anything substantuve about the large-scale structure of this graph. That said, there are many special casses where we can say a lot about the strucutre of this graph. In the special case that 
+In general, it's hard to "*zoom out from* $[S//X]_{\ast}$" to say anything substantuve about the large-scale structure of this graph. That said, there are many special casses where we can say a lot about the strucutre of this graph. In the special case that 
 - $S=\mathbb{Z}/\ell\mathbb{Z}$, the set of integers modulo some positive integer $\ell$,
 - $M=\mathbb{Z}/\ell\mathbb{Z}$ equipped with its mutliplicative structure,
 
-we can say quite a bit about the strucutre of $[S/\!/M]_{\ast}$. The positive integer $\ell$ has unique prime factorization $$\ell\ =\ p_{1}^{e_1}p_{2}^{e_2}\cdots p_{r}^{e_r}$$ The graph $[S/\!/M]_{\ast}$ contains a subgraph $\text{Div}(\ell)_{\ast}$ with $$\text{Div}(\ell)_{0}:=\{d\in\mathbb{Z}_{>0}:d\text{\ divides\ }\ell\}$$ and $$\text{Div}(\ell)_{1}:=\ \{d\xrightarrow{\ \ \ p\ \ }pd:\ pd\text{\ divides\ }\ell,\ p\text{\ prime}\}$$
+we can say quite a bit about the strucutre of $[S//M]_{\ast}$. The positive integer $\ell$ has unique prime factorization $$\ell\ =\ p_{1}^{e_1}p_{2}^{e_2}\cdots p_{r}^{e_r}$$ The graph $[S//M]_{\ast}$ contains a subgraph $\text{Div}(\ell)_{\ast}$ with $$\text{Div}(\ell)_{0}:=\{d\in\mathbb{Z}_{>0}:d\text{\ divides\ }\ell\}$$ and $$\text{Div}(\ell)_{1}:=\ \{d\xrightarrow{\ \ \ p\ \ }pd:\ pd\text{\ divides\ }\ell,\ p\text{\ prime}\}$$
 
 [...]
 
