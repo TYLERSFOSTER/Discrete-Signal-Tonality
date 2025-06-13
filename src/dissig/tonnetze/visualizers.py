@@ -48,7 +48,7 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     G.graph["label"] = f"\nTonnetz for multipliers {tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
     G.graph["fontsize"] = "38"
-    G.graph["rankdir"] = "LR"
+    G.graph["rankdir"] = "UD"
 
     A = to_agraph(G)
 
