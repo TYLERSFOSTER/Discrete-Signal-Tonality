@@ -1,8 +1,10 @@
-<picture>
-  <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
-  <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
-  <img src="docs/images/dissig_logo_dark.jpg" alt="Dissig logo" style="height: 20em;">
-</picture>
+<p align="left">
+  <picture>
+    <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/dissig_logo_dark.jpg" alt="tonnetzB" width="500">
+  </picture>
+</p>
 
 # **Tonal Structures**<br><small>*for*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
 
@@ -13,29 +15,29 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 ### Euler's *tonnetz*
 [...]
 
-<figure style="text-align: center;">
+<p align="center">
   <picture>
     <source srcset="docs/images/euler_tonnetz_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/euler_tonnetz_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/euler_tonnetz_dark.jpg" alt="Euler tonnetz" style="height: 10em;">
+    <img src="docs/images/euler_tonnetz_dark.jpg" alt="tonnetzB" width="350">
   </picture>
-  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
-    Euler's tone network ("tonnetz")
-  </figcaption>
-</figure>
+</p>
+<p align="center" style="font-size: 80%;">
+  Tonnetz for discrete audio signals with 36 samples
+</p>
 
 [...]
 
-<figure style="text-align: center;">
+<p align="center">
   <picture>
     <source srcset="docs/images/euler_modern_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/euler_modern_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/euler_modern_dark.jpg" alt="Euler tonnetz modernized" style="height: 15em;">
+    <img src="docs/images/euler_modern_dark.jpg" alt="tonnetzB" width="300">
   </picture>
-  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
-    Modernized version of Euler's tone network ("tonnetz")
-  </figcaption>
-</figure>
+</p>
+<p align="center" style="font-size: 80%;">
+  Tonnetz for discrete audio signals with 36 samples
+</p>
 
 [...]
 
@@ -47,16 +49,16 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 [...]
 
-<figure style="text-align: center;">
+<p align="center">
   <picture>
     <source srcset="docs/images/tonnetz_36_dark.jpg" media="(prefers-color-scheme: dark)">
-    <source srcset="docs/tonnetz_36_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/tonnetz_36_dark.jpg" alt="tonnetzB" style="height: 25em;">
+    <source srcset="docs/images/tonnetz_36_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/tonnetz_36_dark.jpg" alt="tonnetzB" width="600">
   </picture>
-  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
-    Tonnetz for discrete audio signals with 36 samples
-  </figcaption>
-</figure>
+</p>
+<p align="center" style="font-size: 80%;">
+  Tonnetz for discrete audio signals with 36 samples
+</p>
 
 
 
