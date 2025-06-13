@@ -7,6 +7,8 @@ the 'results/tonnetze_visuals' directory.
 from __future__ import annotations
 
 from pathlib import Path
+import math
+
 from networkx.drawing.nx_agraph import to_agraph
 
 from dissig.tonnetze.networks import Tonnetz
@@ -30,12 +32,36 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     Returns:
         None: The function writes a PNG file to disk but does not return a value.
     """
-    G = tonnetz.network
+    G = tonnetz.network.copy()  # Work on a copy to allow edge removals
     N = tonnetz.sample_count
 
-    for _, _, d in G.edges(data=True):
-        d["label"] = str(d["weight"])
-        d["arrowhead"] = "vee"
+    # Remove edges that do not map between two divisors of N
+    for u, v in list(G.edges()):
+        w = int(G[u][v]["weight"])
+
+        if v == 0:
+            v_alt = N
+        else:
+            v_alt = v
+        if (w != 0 and u != 0) and N%w == 0 and not (N%u == 0 and N%v_alt == 0):
+            G.remove_edge(u, v)
+            continue
+
+        G[u][v]["label"] = str(w)
+        G[u][v]["arrowhead"] = "vee"
+
+        if math.gcd(w, N) != 1:
+            G[u][v]["edge_type"] = "B"
+            G[u][v]["color"] = "blue"
+            G[u][v]["style"] = "solid"
+            G[u][v]["penwidth"] = "2"
+            G[u][v]["constraint"] = "true"
+        else:
+            G[u][v]["edge_type"] = "A"
+            G[u][v]["color"] = "red"
+            G[u][v]["style"] = "solid"
+            G[u][v]["penwidth"] = "2"
+            G[u][v]["constraint"] = "true"
 
     for n in G.nodes:
         G.nodes[n]["shape"] = "circle"
@@ -48,7 +74,11 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     G.graph["label"] = f"\nTonnetz for multipliers {tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
     G.graph["fontsize"] = "38"
-    G.graph["rankdir"] = "UD"
+    G.graph["rankdir"] = "LR"
+    G.graph["compound"] = "true"
+    G.graph["nodesep"] = "0.1"
+    G.graph["ranksep"] = "2.1"
+
 
     A = to_agraph(G)
 
@@ -59,8 +89,7 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     print("CLUSTER_MAP:", cluster_map)
 
     for i, (representative, nodes) in enumerate(cluster_map.items()):
-        thing = representative.replace('cluster_', '')
-        thing = thing.replace('cluster', '')
+        thing = representative.replace('cluster_', '').replace('cluster', '')
         thing = int(thing)
 
         subgraph_name = f"cluster_{i}"  # must start with "cluster_"
@@ -68,13 +97,13 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
         sub.graph_attr.update(
             label=f"orbit  (\u2124/{N}\u2124)\u002A·{thing%N}",
             style="rounded",
-            color="red",          # border color
-            fontcolor="red",      # label text color
+            color="black",
+            fontcolor="black",
             fontsize="30em",
-            ranksep="1",
+            ranksep="1.1",
         )
 
-    A.layout("dot")
+    A.layout(prog="neato")
     A.draw("graph.png")
 
     project_root = Path(__file__).resolve().parent.parent.parent.parent

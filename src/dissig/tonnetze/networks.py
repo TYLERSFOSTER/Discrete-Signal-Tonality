@@ -4,6 +4,7 @@ Build the tone network (tonnetz) for signals of a given modulus, i.e., a given s
 from __future__ import annotations
 
 import copy
+import math
 
 import networkx as nx
 
@@ -25,7 +26,13 @@ class Tonnetz():
         integer_list (list[int]): List of integer multipliers used to generate edges between vertices.
         network (nx.DiGraph): A NetworkX directed graph representing the Tonnetz.
     """
-    def __init__(self, sample_count : int, integer_list : list[int], include_loops : bool=False, include_zero : bool=False):
+    def __init__(
+        self,
+        sample_count : int,
+        integer_list : list[int],
+        include_loops : bool=False,
+        include_zero : bool=False,
+    ):
         assert isinstance(sample_count, int)
         assert sample_count >= 1
         assert isinstance(integer_list, list)
@@ -63,6 +70,8 @@ class Tonnetz():
             vertices = range(self.sample_count)
         else:
             vertices = range(1, self.sample_count)
+
+        N = self.sample_count
 
         new_weighted_edges = []
         for source_vertex in vertices:
