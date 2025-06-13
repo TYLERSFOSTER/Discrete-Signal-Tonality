@@ -2,7 +2,7 @@
   <picture>
     <source srcset="docs/images/dissig_logo_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/dissig_logo_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/dissig_logo_dark.jpg" alt="tonnetzB" width="500">
+    <img src="docs/images/dissig_logo_dark.jpg" alt="tonnetzB" width="700">
   </picture>
 </p>
 
@@ -76,42 +76,42 @@ we can say quite a bit about the strucutre of $\Gamma^{S/\Chi}_{\bullet}$. The p
 
 [...]
 
-<figure style="text-align: center;">
+<p align="center">
   <picture>
     <source srcset="docs/images/1_to_16_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/1_to_16_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/1_to_16_dark.jpg" alt="1 to 16" style="height: 2em;">
+    <img src="docs/images/1_to_16_dark.jpg" alt="tonnetzB" width="420">
   </picture>
-  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
+</p>
+<p align="center" style="font-size: 80%;">
     [...CAPTION...]
-  </figcaption>
-</figure>
+</p>
 
 [...]
 
-<figure style="text-align: center;">
+<p align="center">
   <picture>
     <source srcset="docs/images/1_to_36_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/1_to_36_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/1_to_36_dark.jpg" alt="1 to 36" style="height: 14.5em;">
+    <img src="docs/images/1_to_36_dark.jpg" alt="tonnetzB" width="230">
   </picture>
-  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
+</p>
+<p align="center" style="font-size: 80%;">
     [...CAPTION...]
-  </figcaption>
-</figure>
+</p>
 
 [...]
 
-<figure style="text-align: center;">
+<p align="center">
   <picture>
     <source srcset="docs/images/1_to_60_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/1_to_60_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/1_to_60_dark.jpg" alt="1 to 60" style="height: 11em;">
+    <img src="docs/images/1_to_60_dark.jpg" alt="tonnetzB" width="300">
   </picture>
-  <figcaption style="font-size: 0.9em; margin-top: 0.5em;">
+</p>
+<p align="center" style="font-size: 80%;">
     [...CAPTION...]
-  </figcaption>
-</figure>
+</p>
 
 [...]
 
