@@ -11,8 +11,8 @@
 Welcome to `disig`, a Python package that allows users to compute and manipulate [...]
 
 ## *TODO*s
-- Fix path where visualizer is saving images
-- Get rid of TeX rendering in and finish `./README.md`
+- pylint everything
+- Finish `./README.md`
 - Generate examples with accompanying diagrams
 ## 
 
