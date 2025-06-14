@@ -15,7 +15,7 @@ from dissig.tonnetze.networks import Tonnetz
 from dissig.utils.arithmetic import unit_clusters
 
 
-def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> None:
+def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True, appearance_theme='light') -> None:
     """
     Renders a Tonnetz graph and saves it as a .png file in the 'results/tonnetze_visuals' directory.
 
@@ -32,6 +32,20 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     Returns:
         None: The function writes a PNG file to disk but does not return a value.
     """
+    assert appearance_theme in ['light', 'dark']
+    if appearance_theme == 'light':
+        red_hue = 'red'
+        blue_hue = 'blue'
+        background_hue = 'white'
+        text_hue = 'black'
+        gray_hue = 'lightgray'
+    elif appearance_theme == 'dark':
+        red_hue = 'salmon'
+        blue_hue = 'skyblue'
+        background_hue = 'black'
+        text_hue = 'white'
+        gray_hue = '0.35 0.25 0.25'
+
     G = tonnetz.network.copy()  # Work on a copy to allow edge removals
     N = tonnetz.sample_count
 
@@ -52,23 +66,25 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
 
         if math.gcd(w, N) != 1:
             G[u][v]["edge_type"] = "B"
-            G[u][v]["color"] = "blue"
+            G[u][v]["color"] = blue_hue
             G[u][v]["style"] = "solid"
-            G[u][v]["penwidth"] = "1.5"
-            G[u][v]["fontcolor"] = "blue"
+            G[u][v]["penwidth"] = "1"
+            G[u][v]["fontcolor"] = blue_hue
             G[u][v]["constraint"] = "true"
         else:
             G[u][v]["edge_type"] = "A"
-            G[u][v]["color"] = "red"
+            G[u][v]["color"] = red_hue
             G[u][v]["style"] = "solid"
-            G[u][v]["penwidth"] = "1.5"
-            G[u][v]["fontcolor"] = "red"
+            G[u][v]["penwidth"] = "1"
+            G[u][v]["fontcolor"] = red_hue
             G[u][v]["constraint"] = "true"
 
     for n in G.nodes:
         G.nodes[n]["shape"] = "circle"
         G.nodes[n]["style"] = "filled"
-        G.nodes[n]["fillcolor"] = "lightgray"
+        G.nodes[n]["color"] = text_hue
+        G.nodes[n]["fillcolor"] = gray_hue
+        G.nodes[n]["fontcolor"] = text_hue
         G.nodes[n]["fontsize"] = "18"
         G.nodes[n]["fixedsize"] = "true"
         G.nodes[n]["width"] = "0.35"
@@ -76,10 +92,12 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     G.graph["label"] = f"\nTonnetz for multipliers {tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
     G.graph["fontsize"] = "24"
+    G.graph["fontcolor"] = text_hue
     G.graph["rankdir"] = "LR"
     G.graph["compound"] = "true"
     G.graph["nodesep"] = "0.1"
     G.graph["ranksep"] = "2.1"
+    G.graph["bgcolor"] = background_hue  # <--- This line sets the full image background
 
     A = to_agraph(G)
 
