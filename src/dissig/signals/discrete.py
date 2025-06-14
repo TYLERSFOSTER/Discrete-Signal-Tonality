@@ -31,7 +31,7 @@ class Signal():
         """
         assert isinstance(sample_list, list)
         assert len(sample_list) >= 1
-        assert all([isinstance(entry, (complex)) for entry in sample_list])
+        assert all(isinstance(entry, complex) for entry in sample_list)
 
         self.sample_count = len(sample_list)
         self.underlying_signal = sample_list
@@ -67,7 +67,7 @@ class Signal():
     def __len__(self):
         """Return the number of samples in the signal."""
         return self.sample_count
-    
+
     def forward(self, idx : int) -> complex:
         """
         Retrieve the value at index `idx` modulo the signal length.
@@ -113,7 +113,8 @@ class Signal():
 
 def character_signal(multiplier : int, N : int) -> Signal:
     """
-    Construct a character signal from the exponential character χ(t) = exp(2πi · multiplier · t / N).
+    Construct a character signal from the exponential character
+        χ(t) = exp(2πi · multiplier · t / N).
 
     Args:
         multiplier (int): Frequency multiplier.
@@ -153,5 +154,3 @@ def signal_from_real(sample_list : list[int | float]) -> Signal:
     resulting_signal = Signal(complexified_sample_list)
 
     return resulting_signal
-
-    

@@ -81,7 +81,7 @@ def prime_powers(N : int) -> list:
         exponent = 0
         while N%divisor**(exponent + 1) == 0:
             exponent += 1
-        
+
         ramified_primes.append((divisor, exponent))
-    
+
     return ramified_primes

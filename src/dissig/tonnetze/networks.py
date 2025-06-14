@@ -4,14 +4,13 @@ Build the tone network (tonnetz) for signals of a given modulus, i.e., a given s
 from __future__ import annotations
 
 import copy
-import math
 
 import networkx as nx
 
 from dissig.signals.discrete import Signal
 
 
-class Tonnetz():    
+class Tonnetz():
     """
     A tonnetz (tone network) for discrete signals, represented as a weighted directed graph.
 
@@ -23,7 +22,8 @@ class Tonnetz():
     Attributes:
         sample_count (int): Number of vertices in the network, typically representing
             discrete pitch classes or tonal units.
-        integer_list (list[int]): List of integer multipliers used to generate edges between vertices.
+        integer_list (list[int]): List of integer multipliers used to
+            generate edges between vertices.
         network (nx.DiGraph): A NetworkX directed graph representing the Tonnetz.
     """
     def __init__(
@@ -36,7 +36,7 @@ class Tonnetz():
         assert isinstance(sample_count, int)
         assert sample_count >= 1
         assert isinstance(integer_list, list)
-        assert all([isinstance(entry, int) for entry in integer_list])
+        assert all(isinstance(entry, int) for entry in integer_list)
         assert isinstance(include_loops, bool)
         assert isinstance(include_zero, bool)
 
@@ -64,14 +64,12 @@ class Tonnetz():
             the weighted edges of a directed graph.
         """
         assert isinstance(new_integer_list, list)
-        assert all([isinstance(entry, int) for entry in new_integer_list])
-    
+        assert all(isinstance(entry, int) for entry in new_integer_list)
+
         if self.include_zero:
             vertices = range(self.sample_count)
         else:
             vertices = range(1, self.sample_count)
-
-        N = self.sample_count
 
         new_weighted_edges = []
         for source_vertex in vertices:
@@ -83,7 +81,7 @@ class Tonnetz():
                     continue
 
                 new_weighted_edges.append(current_edge)
-            
+
         return new_weighted_edges
 
     def generate_network(self, new_integer_list: list[int]) -> nx.DiGraph:
@@ -97,7 +95,7 @@ class Tonnetz():
             vertices = range(1, self.sample_count)
 
         weighted_edges = self.generate_weighted_edges(new_integer_list)
-        
+
         new_network = nx.DiGraph()
         new_network.add_nodes_from(vertices)
         new_network.add_weighted_edges_from(weighted_edges)
@@ -157,6 +155,5 @@ class SignalTonnetz(Tonnetz):
         for vertex in self.network.nodes:
             rescaled_signal = self.tonic_signal.scale_time_by(vertex)
             new_graph.nodes[vertex]["signal"] = rescaled_signal
-        
-        return new_graph
 
+        return new_graph

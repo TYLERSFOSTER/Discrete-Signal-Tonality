@@ -79,7 +79,6 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
     G.graph["nodesep"] = "0.1"
     G.graph["ranksep"] = "2.1"
 
-
     A = to_agraph(G)
 
     if arithmetic_clusters:

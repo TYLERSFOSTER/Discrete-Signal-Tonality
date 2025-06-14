@@ -1,4 +1,6 @@
-# src/dissig/tonnetze/__init__.py
+"""
+./src/dissig/tonnetze/__init__.py
+"""
 from __future__ import annotations
 
 from dissig.tonnetze.networks import Tonnetz, SignalTonnetz

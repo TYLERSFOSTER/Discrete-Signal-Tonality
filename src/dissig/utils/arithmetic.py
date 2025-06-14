@@ -7,6 +7,15 @@ import math
 
 
 def all_divisors(N : int) -> list[int]:
+    """
+    Compute all positive divisors of a given positive integer N.
+
+    Args:
+        N (int): A positive integer.
+
+    Returns:
+        list[int]: A sorted list of all positive divisors of N.
+    """
     assert isinstance(N, int)
     assert N > 0, "Input must be a positive integer"
 
@@ -23,6 +32,15 @@ def all_divisors(N : int) -> list[int]:
 
 
 def multiplicative_units(N : int) -> list[int]:
+    """
+    Compute the multiplicative units in the ring Z/NZ.
+
+    Args:
+        N (int): A positive integer.
+
+    Returns:
+        list[int]: A list of integers in {0, ..., N-1} that are coprime to N.
+    """
     assert isinstance(N, int)
 
     unit_list = [idx for idx in range(N) if math.gcd(idx, N) == 1]
@@ -31,6 +49,17 @@ def multiplicative_units(N : int) -> list[int]:
 
 
 def unit_clusters(N : int) -> dict[str, list[int]]:
+    """
+    Compute clusters in Z/NZ formed by multiplying base cluster, consisting of
+    units (Z/NZ)^× in Z/NZ by every divisor of N.
+
+    Args:
+        N (int): A positive integer.
+
+    Returns:
+        dict[str, list[int]]: A dictionary mapping 'cluster_d' to the sorted list
+                              of residues {(d * u) mod N | u in (Z/NZ)^×}, for each divisor d of N.
+    """
     assert isinstance(N, int)
     assert N >= 1
 
@@ -67,5 +96,3 @@ def unit_vectors(N: int) -> list[tuple[float, float]]:
     ]
 
     return vectors
-
-    

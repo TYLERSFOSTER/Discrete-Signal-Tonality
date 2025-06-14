@@ -49,14 +49,19 @@ def signal_to_wav(
     waveform to a 16-bit WAV file.
 
     Args:
-        signal (Signal): The input complex-valued signal object, expected to support `extract_real(normalize=True)`.
-        signal_max_freq (float): The maximum frequency of the signal in Hz. Used to calculate the signal's sample period.
+        signal (Signal): The input complex-valued signal object,
+            expected to support `extract_real(normalize=True)`.
+        signal_max_freq (float): The maximum frequency of the signal in Hz.
+            Used to calculate the signal's sample period.
         wav_duration (float): The desired duration of the output WAV file in seconds.
-        wav_sample_rate (int, optional): The sampling rate of the output WAV file. Defaults to 44100 Hz.
-        filename (str, optional): The base name for the output WAV file (without extension). Defaults to "test_signal".
+        wav_sample_rate (int, optional): The sampling rate of the output WAV file.
+            Defaults to 44100 Hz.
+        filename (str, optional): The base name for the output WAV file (without extension).
+            Defaults to "test_signal".
 
     Raises:
-        AssertionError: If `signal_max_freq` is not a positive float, or if `wav_sample_rate` is not a positive integer.
+        AssertionError: If `signal_max_freq` is not a positive float,
+            or if `wav_sample_rate` is not a positive integer.
 
     Side Effects:
         Writes a `.wav` file to the directory `results/wav_files/` under the project root.
@@ -85,7 +90,7 @@ def signal_to_wav(
     resampled_waveform = np.array(resampled_ostinato)
     rescaled_waveform = resampled_waveform * MAX_INT16
     int_waveform = rescaled_waveform.astype(np.int16)
-    
+
     project_root = Path(__file__).resolve().parent.parent.parent.parent
     output_dir = project_root / "results" / "wav_files"
     output_dir.mkdir(parents=True, exist_ok=True)
