@@ -92,5 +92,5 @@ def test_tonnetz_to_wav_calls_signal_to_wav(
                 signal_max_freq,
                 wav_duration,
                 wav_sample_rate=wav_sample_rate,
-                filename=f"signal_tonnetz/{filename}_{i}",
+                filename=f"{filename}_{i}",
             )
