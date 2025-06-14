@@ -54,26 +54,28 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
             G[u][v]["edge_type"] = "B"
             G[u][v]["color"] = "blue"
             G[u][v]["style"] = "solid"
-            G[u][v]["penwidth"] = "2"
+            G[u][v]["penwidth"] = "1.5"
+            G[u][v]["fontcolor"] = "blue"
             G[u][v]["constraint"] = "true"
         else:
             G[u][v]["edge_type"] = "A"
             G[u][v]["color"] = "red"
             G[u][v]["style"] = "solid"
-            G[u][v]["penwidth"] = "2"
+            G[u][v]["penwidth"] = "1.5"
+            G[u][v]["fontcolor"] = "red"
             G[u][v]["constraint"] = "true"
 
     for n in G.nodes:
         G.nodes[n]["shape"] = "circle"
         G.nodes[n]["style"] = "filled"
         G.nodes[n]["fillcolor"] = "lightgray"
-        G.nodes[n]["fontsize"] = "24"
+        G.nodes[n]["fontsize"] = "18"
         G.nodes[n]["fixedsize"] = "true"
-        G.nodes[n]["width"] = "0.5"
+        G.nodes[n]["width"] = "0.35"
 
     G.graph["label"] = f"\nTonnetz for multipliers {tonnetz.integer_list} in \u2124/{N}\u2124\n "
     G.graph["labelloc"] = "t"
-    G.graph["fontsize"] = "38"
+    G.graph["fontsize"] = "24"
     G.graph["rankdir"] = "LR"
     G.graph["compound"] = "true"
     G.graph["nodesep"] = "0.1"
@@ -91,16 +93,19 @@ def nx_viz(tonnetz: Tonnetz, filename: str, arithmetic_clusters: bool=True) -> N
         thing = representative.replace('cluster_', '').replace('cluster', '')
         thing = int(thing)
 
-        subgraph_name = f"cluster_{i}"  # must start with "cluster_"
-        sub = A.add_subgraph(nodes, name=subgraph_name)
-        sub.graph_attr.update(
-            label=f"orbit  (\u2124/{N}\u2124)\u002A·{thing%N}",
-            style="rounded",
-            color="black",
-            fontcolor="black",
-            fontsize="30em",
-            ranksep="1.1",
-        )
+        # subgraph_name = f"cluster_{i}"  # must start with "cluster_"
+        # sub = A.add_subgraph(nodes, name=subgraph_name)
+        # sub.graph_attr.update(
+        #     label=f"orbit  (\u2124/{N}\u2124)\u002A·{thing%N}",
+        #     labelloc="t",          # <-- top-align label
+        #     labeljust="c",         # <-- center the label
+        #     style="rounded",
+        #     color="black",
+        #     fontcolor="black",
+        #     fontsize="30em",
+        #     ranksep="1.1",
+        #     margin="12",           # <-- spacing around subgraph contents
+        # )
 
     A.layout(prog="neato")
 

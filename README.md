@@ -89,7 +89,7 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
   <picture>
     <source srcset="docs/images/scaling_signals_discrete_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/scaling_signals_discrete_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/scaling_signals_discrete_dark.jpg" alt="tonnetzB" width="600">
+    <img src="docs/images/scaling_signals_discrete_dark.jpg" alt="tonnetzB" width="700">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
@@ -102,7 +102,7 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
   <picture>
     <source srcset="docs/images/tonnetz_36_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/tonnetz_36_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/tonnetz_36_dark.jpg" alt="tonnetzB" width="600">
+    <img src="docs/images/tonnetz_36_dark.jpg" alt="tonnetzB" width="700">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
@@ -161,6 +161,45 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
     <source srcset="docs/images/36_with_clusters_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/36_with_clusters_light.jpg" media="(prefers-color-scheme: light)">
     <img src="docs/images/36_with_clusters_dark.jpg" alt="tonnetzB" width="650">
+  </picture>
+</p>
+<p align="center" style="font-size: 80%;">
+    [...CAPTION...]
+</p>
+
+[...]
+
+<p align="center">
+  <picture>
+    <source srcset="docs/images/2-3-5-7_in_35_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/2-3-5-7_in_35_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/2-3-5-7_in_35_dark.jpg" alt="tonnetzB" width="530">
+  </picture>
+</p>
+<p align="center" style="font-size: 80%;">
+    [...CAPTION...]
+</p>
+
+[...]
+
+<p align="center">
+  <picture>
+    <source srcset="docs/images/2-3-5-7_in_36_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/2-3-5-7_in_36_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/2-3-5-7_in_36_dark.jpg" alt="tonnetzB" width="490">
+  </picture>
+</p>
+<p align="center" style="font-size: 80%;">
+    [...CAPTION...]
+</p>
+
+[...]
+
+<p align="center">
+  <picture>
+    <source srcset="docs/images/2-3-5-11-13_in_216_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/2-3-5-11-13_in_216_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/2-3-5-11-13_in_216_dark.jpg" alt="tonnetzB" width="750">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
