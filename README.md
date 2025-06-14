@@ -197,9 +197,9 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 <p align="center">
   <picture>
-    <source srcset="docs/images/2-3-5-11-13_in_216_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/2-3-5-11-13_in_216_dark.png" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/2-3-5-11-13_in_216_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/2-3-5-11-13_in_216_dark.png" alt="tonnetzB" width="750">
+    <img src="docs/images/2-3-5-11-13_in_216_dark.png" alt="tonnetzQ" width="650">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
