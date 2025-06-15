@@ -1,3 +1,6 @@
+"""
+Script for generating transformed signals under tonnetz
+"""
 from __future__ import annotations
 
 from dissig.signals.discrete import character_signal

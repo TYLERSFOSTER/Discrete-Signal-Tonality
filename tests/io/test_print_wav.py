@@ -1,21 +1,28 @@
+"""
+Unit tests for WAV export functions in print_wav.
+"""
 from __future__ import annotations
 
-import pytest
-from unittest.mock import MagicMock, patch
-import numpy as np
 from pathlib import Path
+from unittest.mock import MagicMock, patch
+
+import pytest
+import numpy as np
 from scipy.io import wavfile
 
 from dissig.io.print_wav import signal_to_wav, tonnetz_to_wav
 
 class DummySignal:
+    """Dummy class to mimick Signal class."""
     def __init__(self, data):
         self.underlying_signal = data
 
     def extract_real(self, normalize=False):
+        """Extract the real part of signal"""
         real = [float(x.real) for x in self.underlying_signal]
         if normalize:
-            peak = max(max(real), abs(min(real))) + 1e-8
+            max_real = max(real)
+            peak = max(max_real, abs(min(real))) + 1e-8
             return [r / peak for r in real]
         return real
 
@@ -32,6 +39,7 @@ class DummySignal:
     ]
 )
 def test_signal_to_wav_creates_file(signal_data, signal_max_freq, wav_duration, wav_sample_rate):
+    """Test signal_to_wav writes a valid .wav file to disk."""
     filename = "pytest_generated_test_signal"
     signal = DummySignal(signal_data)
 
@@ -66,6 +74,7 @@ def test_signal_to_wav_creates_file(signal_data, signal_max_freq, wav_duration, 
 def test_tonnetz_to_wav_calls_signal_to_wav(
     node_ids, signal_max_freq, wav_duration, wav_sample_rate, filename
 ):
+    """Test tonnetz_to_wav calls signal_to_wav on each node."""
     # Create mock signal and SignalTonnetz object
     mock_signal = MagicMock(name="MockSignal")
     mock_network = MagicMock()

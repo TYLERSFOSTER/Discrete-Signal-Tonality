@@ -1,3 +1,6 @@
+"""
+Unit tests for Signal and character_signal in discrete signal module.
+"""
 from __future__ import annotations
 
 import pytest
@@ -15,6 +18,7 @@ from dissig.signals.discrete import Signal, character_signal
     ]
 )
 def test_signal_init_valid(sample_list):
+    """Test valid Signal initialization."""
     signal = Signal(sample_list)
     assert len(signal) == len(sample_list)
     assert signal.underlying_signal == sample_list
@@ -32,6 +36,7 @@ def test_signal_init_valid(sample_list):
     ]
 )
 def test_signal_init_invalid(bad_sample_list):
+    """Test invalid Signal initialization raises assertion."""
     with pytest.raises(AssertionError):
         Signal(bad_sample_list)
 
@@ -45,6 +50,7 @@ def test_signal_init_invalid(bad_sample_list):
     ]
 )
 def test_scale_time_by(samples, multiplier, expected_indices):
+    """Test signal time scaling by a multiplier."""
     signal = Signal(samples)
     scaled = signal.scale_time_by(multiplier)
     expected = [samples[i] for i in expected_indices]
@@ -61,24 +67,27 @@ def test_scale_time_by(samples, multiplier, expected_indices):
     ]
 )
 def test_forward(samples, query_idx, expected_value):
+    """Test forward signal access with modular indexing."""
     signal = Signal(samples)
     assert signal.forward(query_idx) == expected_value
 
 
 def test_forward_invalid_index_type():
+    """Test invalid index type in forward method."""
     signal = Signal([1+0j])
     with pytest.raises(AssertionError):
         signal.forward("not an int") # type: ignore
 
 
 def test_scale_time_invalid_multiplier():
+    """Test invalid multiplier raises assertion in scaling."""
     signal = Signal([1+0j, 2+0j])
     with pytest.raises(AssertionError):
         signal.scale_time_by("bad multiplier") # type: ignore
 
 
 @pytest.mark.parametrize(
-    "multiplier, N, expected_length",
+    "multiplier, modulus, expected_length",
     [
         (0, 1, 1),
         (1, 4, 4),
@@ -86,8 +95,9 @@ def test_scale_time_invalid_multiplier():
         (3, 8, 8),
     ]
 )
-def test_character_signal(multiplier, N, expected_length):
-    result = character_signal(multiplier, N)
+def test_character_signal(multiplier, modulus, expected_length):
+    """Test character_signal properties and output type."""
+    result = character_signal(multiplier, modulus)
 
     # Check length
     assert isinstance(result, Signal)
@@ -110,6 +120,7 @@ def test_character_signal(multiplier, N, expected_length):
     ]
 )
 def test_extract_real(input_values, normalize, expected):
+    """Test real part extraction and optional normalization."""
     signal = Signal(input_values)
     result = signal.extract_real(normalize=normalize)
     assert all(abs(r - e) < 1e-6 for r, e in zip(result, expected))

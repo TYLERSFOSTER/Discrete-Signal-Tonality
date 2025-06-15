@@ -2,7 +2,7 @@
 Test suite for the `primes_below` function.
 
 This script runs unit tests to verify the correctness of the prime number
-generation function `primes_below(N)` defined in `primes.py`.
+generation function `primes_below(modulus)` defined in `primes.py`.
 """
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import pytest
 from dissig.utils.primes import primes_below, prime_divisors, prime_powers
 
 
-@pytest.mark.parametrize("N, primes_list", [
+@pytest.mark.parametrize("modulus, primes_list", [
     (2, []),
     (3, [2]),
     (4, [2, 3]),
@@ -24,15 +24,15 @@ from dissig.utils.primes import primes_below, prime_divisors, prime_powers
     (11, [2, 3, 5, 7]),
     (12, [2, 3, 5, 7, 11]),
 ])
-def test_primes_below(N, primes_list):
+def test_primes_below(modulus, primes_list):
     """Verify that primes_below returns the expected list"""
-    candidate_list = primes_below(N)
+    candidate_list = primes_below(modulus)
 
     assert isinstance(candidate_list, list)
     assert candidate_list == primes_list
 
 
-@pytest.mark.parametrize("N, expected", [
+@pytest.mark.parametrize("modulus, expected", [
         (1, []),
         (2, [2]),
         (3, [3]),
@@ -49,12 +49,13 @@ def test_primes_below(N, primes_list):
         (121, [11]),
         (2 * 3 * 5 * 7 * 11 * 13, [2, 3, 5, 7, 11, 13]),
 ])
-def test_prime_divisors(N, expected):
-    assert prime_divisors(N) == expected
+def test_prime_divisors(modulus, expected):
+    """Test that prime_divisors returns exactly the prime divisor of modulus."""
+    assert prime_divisors(modulus) == expected
 
 
 @pytest.mark.parametrize(
-    "N, expected",
+    "modulus, expected",
     [
         (1, []),
         (2, [(2, 1)]),
@@ -72,5 +73,6 @@ def test_prime_divisors(N, expected):
         (2 * 3 * 3 * 5 * 5 * 5, [(2, 1), (3, 2), (5, 3)]),
     ]
 )
-def test_prime_powers(N, expected):
-    assert prime_powers(N) == expected
+def test_prime_powers(modulus, expected):
+    """Test that prime_powers returns the prime factorization of modulus."""
+    assert prime_powers(modulus) == expected

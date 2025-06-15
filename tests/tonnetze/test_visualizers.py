@@ -1,8 +1,12 @@
+"""
+Unit tests for tonnetz visualizaiton export functions in visualizers.py
+"""
 from __future__ import annotations
 
-import pytest
-from unittest.mock import MagicMock, patch, PropertyMock
 from pathlib import Path
+from unittest.mock import MagicMock, patch, PropertyMock
+
+import pytest
 
 from dissig.tonnetze.visualizers import nx_viz
 
@@ -12,11 +16,12 @@ from dissig.tonnetze.visualizers import nx_viz
     (False, False),
 ])
 def test_nx_viz(arithmetic_clusters, expected_cluster_called, tmp_path):
+    """Test behaviour of nx_viz"""
     # --- Mock Tonnetz object ---
     tonnetz = MagicMock()
     tonnetz.sample_count = 12
     tonnetz.integer_list = [1, 5, 7]
-    
+
     # --- Mock NetworkX graph structure ---
     mock_graph = MagicMock()
     mock_graph.nodes = {0: {}, 1: {}, 2: {}}
@@ -27,8 +32,11 @@ def test_nx_viz(arithmetic_clusters, expected_cluster_called, tmp_path):
     mock_agraph = MagicMock()
     mock_unit_clusters = {"cluster1": [0, 1], "cluster2": [2]}
 
-    with patch("dissig.tonnetze.visualizers.to_agraph", return_value=mock_agraph) as patch_agraph, \
-        patch("dissig.tonnetze.visualizers.unit_clusters", return_value=mock_unit_clusters) as patch_clusters, \
+    with patch("dissig.tonnetze.visualizers.to_agraph", return_value=mock_agraph) as _, \
+        patch(
+            "dissig.tonnetze.visualizers.unit_clusters",
+            return_value=mock_unit_clusters,
+        ) as patch_clusters, \
         patch("dissig.tonnetze.visualizers.Path") as mock_path_cls:
 
         # Set up fake Path resolution tree
@@ -36,8 +44,12 @@ def test_nx_viz(arithmetic_clusters, expected_cluster_called, tmp_path):
         mock_src = MagicMock(spec=Path)
         mock_project_root = tmp_path
 
-        type(mock_resolved).name = PropertyMock(side_effect=["visualizers.py", "tonnetze", "dissig", "src"])
-        type(mock_resolved).parent = PropertyMock(side_effect=[MagicMock(), MagicMock(), mock_src, mock_project_root])
+        type(mock_resolved).name = PropertyMock(
+            side_effect=["visualizers.py", "tonnetze", "dissig", "src"]
+        )
+        type(mock_resolved).parent = PropertyMock(
+            side_effect=[MagicMock(), MagicMock(), mock_src, mock_project_root]
+        )
 
         mock_path_cls.return_value = MagicMock(resolve=MagicMock(return_value=mock_resolved))
 
@@ -50,4 +62,3 @@ def test_nx_viz(arithmetic_clusters, expected_cluster_called, tmp_path):
             patch_clusters.assert_called_once_with(12)
         else:
             patch_clusters.assert_not_called()
-
