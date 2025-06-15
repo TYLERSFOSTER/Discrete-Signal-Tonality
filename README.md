@@ -20,7 +20,7 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 ## Harmonic movement between discrete signals
 
 ### Euler's *tonnetz*
-[...]
+A [*tonnetz*](https://en.wikipedia.org/wiki/Tonnetz) (German for "*tone network*," with plural *tonnetze*) is a type of diagram that depicts the intervalic inte-relationship between a collection of pitches, pitch classes, or even chords. One of the first known examples of a tonnetz is a drawing that the mathematician [Leonard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) included in a 1739 treatise on music theory.
 
 <p align="center">
   <picture>
@@ -30,10 +30,10 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Tonnetz for discrete audio signals with 36 samples
+  Euler's tonnetz
 </p>
 
-[...]
+Today, we tend to depict this same tonnetze as a grid network. This tonnetz depicts the relationship between the 12 pitch classes in a 12-tone equaltempered tuning when we move along the two important diatonic intervals P5 (a *perfect fifth*) and M3 (m *major third*):
 
 <p align="center">
   <picture>
@@ -43,10 +43,12 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Tonnetz for discrete audio signals with 36 samples
+  Our modernized version of Euler's tonnetz.
 </p>
 
-[...]
+Here, we depict the tonnetz as a grid network, instead of Euler's original system of cascading brackets, but the content is essentially identical. We've added dotted arrows along the bottom edges of the diagram to indicate how it loops back along itself along P5 and M3 intervals.
+
+The diagram is interesting from a music theoretical perspecitive because to exhibits lots of important diatonic-based musical phenomena in striking and often quite suggestive geometric patterns. To give just one example, all major and minor triads appear in this tonnetz as [span or cospan diagrams](https://en.wikipedia.org/wiki/Span_(category_theory)):
 
 <p align="center">
   <picture>
@@ -56,10 +58,8 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Tonnetz for discrete audio signals with 36 samples
+  Major and minor triads appear in Euler's tonnetz as spans and copsans
 </p>
-
-[...]
 
 ### Modern tonnetze
 
@@ -111,9 +111,28 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 [...]
 
-### Large-scale structure of discrete tonnetze
+## Large-scale structure of discrete tonnetze
 
 [...]
+
+### Orbits under the unit group from natural clusters
+
+[...]
+
+<p align="center">
+  <picture>
+    <source srcset="docs/images/36_with_clusters_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/36_with_clusters_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/36_with_clusters_dark.jpg" alt="tonnetzB" width="650">
+  </picture>
+</p>
+<p align="center" style="font-size: 80%;">
+    [...CAPTION...]
+</p>
+
+[...]
+
+### Orbit cluster are arranged along divisor lattice
 
 [...]
 
@@ -148,19 +167,6 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
     <source srcset="docs/images/1_to_60_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/1_to_60_light.jpg" media="(prefers-color-scheme: light)">
     <img src="docs/images/1_to_60_dark.jpg" alt="tonnetzB" width="300">
-  </picture>
-</p>
-<p align="center" style="font-size: 80%;">
-    [...CAPTION...]
-</p>
-
-[...]
-
-<p align="center">
-  <picture>
-    <source srcset="docs/images/36_with_clusters_dark.jpg" media="(prefers-color-scheme: dark)">
-    <source srcset="docs/images/36_with_clusters_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/36_with_clusters_dark.jpg" alt="tonnetzB" width="650">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
