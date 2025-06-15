@@ -17,8 +17,6 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 - Finish `./README.md`
 - separate visualization into two cases, one that can cluster and one that's `"neato"`
 - Generate examples with accompanying diagrams
-- pylint `./tests`
-- Finish TeX documentation
 ## 
 
 # 1. Harmonic movement between discrete signals
