@@ -103,7 +103,7 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
   Moving a continuous periodic audio signal f(t) up two octaves via f(t) ↦ f(2t) ↦ f(4t)
 </p>
 
-[...]
+Not all audio signals are continuous though. [Discrete audio signals](https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time) have played and continue to play an important role in music production and in signal processing. For a discrete periodic audio signal, that is, for a periodic audio signal $s(i)$ that samples time at regular discrete intervals, so $i=0,1,2,\dots,\ell-1$ for some positive integer $\ell$, the notion of "re*scaling* times" doesn't quite make sense. We can still multiply the sample index $i$ by any integer $m$ to obtain a new signal: $s(i)\mapsto s(mi)$. However, the manner in which these sample indices $i$ transform under multiplication by an integer follows the rules of modular arithmetic, not the rules of continuous time dilation:
 
 <p align="center">
   <picture>
