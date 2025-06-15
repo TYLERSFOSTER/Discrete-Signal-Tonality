@@ -79,6 +79,8 @@ Tonnetze became an important tool to developments in [(musical) set theory](http
 - Richard Cohn. *Audacious Euphony: Chromatic Harmony and the Triad’s Second Nature.* Oxford Studies in Music Theory. Oxford University Press, January 2012. 256 pages.
 - Edward Gollin and Alexander Rehding, editors. *The Oxford Handbook of Neo-Riemannian Music Theories*. Oxford Handbooks. Oxford University Press, May 2014. 632 pages.
 
+***["Controversy"]***
+
 The general pattern in all of this work is a partial import, into music theory, of category theoretical diagrams coming from representation theory, specifically from the repesentation theory of the circle group.
 
 ## *Tonality* for discrete audio signals
@@ -244,13 +246,65 @@ If you've played with 8-bit tones, you may already have a sense that for discret
 [...]
 
 # Installation and Setup
-- [📦 Project Structure](##-project-structure)
 - [🚀 Installation](##-installation)
 - [🔧 Usage](##-usage)
 - [🧪 Running Tests](##-running-tests)
 - [📄 Documentation](##-documentation)
+- [📦 Project Structure](##-project-structure)
 - [🛠 Development](##-development)
 - [📝 License](##-license)
+
+## 🚀 Installation
+
+Using [PDM](https://pdm.fming.dev):
+
+```bash
+pdm install
+```
+Or using pip (if necessary):
+```bash
+pip install -e .
+```
+
+## 🔧 Usage
+Example usage:
+
+```python-repl
+>>> from dissig.tonnetze.networks import Tonnetz
+>>> from dissig.tonnetze.visualizers import nx_viz
+...
+>>> modulus = 2**3 * 3**3
+>>> integer_list = [2, 3, 5, 11, 13]
+...
+>>> tonnetz = Tonnetz(modulus, integer_list)
+>>> nx_viz(tonnetz, "file_name")
+```
+
+[...]
+
+```python-repl
+>>> from dissig.signals.discrete import character_signal
+>>> from dissig.tonnetze.networks import SignalTonnetz
+>>> from dissig.io.print_wav import tonnetz_to_wav
+...
+>>> modulus = 2**2 * 3**2
+>>> integer_list = [2, 3, 5]
+...
+>>> signal = character_signal(1, modulus)
+>>> signal_tonnetz = SignalTonnetz(signal, integer_list)
+>>> tonnetz_to_wav(signal_tonnetz, 440.0, 1.0)
+```
+
+## 🧪 Running Tests
+```bash
+pdm run pytest
+```
+
+## 📄 Documentation
+[...]
+- Images: docs/images/
+- LaTeX files: docs/tex/
+- External references: docs/external/
 
 ## 📦 Project Structure
 ```bash
@@ -316,40 +370,6 @@ If you've played with 8-bit tones, you may already have a sense that for discret
 ├── pytest.ini  # Pytest configuration file
 └── requirements.txt  # Optional: basic dependency list for pip users
 ```
-
-## 🚀 Installation
-
-Using [PDM](https://pdm.fming.dev):
-
-```bash
-pdm install
-```
-Or using pip (if necessary):
-```bash
-pip install -e .
-```
-
-## 🔧 Usage
-Example usage:
-
-```python
-from dissig.core import run_pipeline
-
-data = ...         # Load your input
-config = {...}     # Define configuration
-result = run_pipeline(data, config)
-```
-
-## 🧪 Running Tests
-```bash
-pdm run pytest
-```
-
-## 📄 Documentation
-[...]
-- Images: docs/images/
-- LaTeX files: docs/tex/
-- External references: docs/external/
 
 ## 🛠 Development
 Set up your development environment:
