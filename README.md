@@ -57,7 +57,7 @@ Today, we tend to depict this same tonnetze as a grid network. This tonnetz depi
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Our modernized version of Euler's tonnetz.
+  A modernized version of Euler's tonnetz.
 </p>
 
 Here, we depict the tonnetz as a grid network, instead of Euler's original system of cascading brackets, but the content is essentially identical. We've added dotted arrows along the bottom edges of the diagram to indicate how it loops back along itself along P5 and M3 intervals.
@@ -72,7 +72,7 @@ The diagram is interesting from a music theoretical perspecitive because to exhi
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Major and minor triads appear in Euler's tonnetz as spans and copsans
+  Major and minor triads appear in our tonnetz as wedges (∧) and vees (∨), respectively
 </p>
 
 ### Modern tonnetze
@@ -106,7 +106,7 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
 
 Not all audio signals are continuous though. [Discrete audio signals](https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time) have played and continue to play an important role in music production and in signal processing.
 
-- ***Audio Example***: <a href="docs/sounds/test_signal_11.wav"> 🔗 A discrete periodic audio signal</a>
+- 🔊 ***Audio Example***: <a href="docs/sounds/test_signal_11.wav"> 🔗 A discrete periodic audio signal</a>
 
 For a discrete periodic audio signal, that is, for a periodic audio signal $s(i)$ that samples time at regular discrete intervals, so $i=0,1,2,\dots,\ell-1$ for some positive integer $\ell$, the notion of "re*scaling* times" doesn't quite make sense. We can still multiply the sample index $i$ by any integer $m$ to obtain a new signal: $s(i)\mapsto s(mi)$. However, the manner in which these sample indices $i$ transform under multiplication by an integer follows the rules of [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic), not the rules of continuous dilation:
 
@@ -127,7 +127,7 @@ If we take this proposal seriously, we arrive at the following:
 - ***Question:*** How is movement along all these "*discrete musical intervals*" interelated?
 
 ### Tonnetze for discrete audio signals
-If you've played with 8-bit tones, you already have a sense that movement along musical intervals is not interelated, for discrete periodic audio signals, in the same way that it is for continous periodic audio signals.
+If you've played with 8-bit tones, you may already have a sense that for discrete periodic audio signals, movement along musical intervals doesn't work in exactly the same way as it does for continous periodic audio signals. Discrete audio signals have complex timbres that seem to have mysterious relationships to one another.
 
 <p align="center">
   <picture>
