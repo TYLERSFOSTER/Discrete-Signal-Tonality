@@ -106,15 +106,7 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
 
 Not all audio signals are continuous though. [Discrete audio signals](https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time) have played and continue to play an important role in music production and in signal processing.
 
-<div style="text-align: center;">
-  <audio controls>
-    <source src="./docs/sounds/test_signal_11.wav" type="audio/wav">
-    Your browser does not support the audio element.
-  </audio>
-  <p style="font-size: 80%; margin-top: 0.5em;">
-    A discrete periodic audio signal
-  </p>
-</div>
+- ***Audio Example***: <a href="docs/sounds/test_signal_11.wav"> 🔗 A discrete periodic audio signal</a>
 
 For a discrete periodic audio signal, that is, for a periodic audio signal $s(i)$ that samples time at regular discrete intervals, so $i=0,1,2,\dots,\ell-1$ for some positive integer $\ell$, the notion of "re*scaling* times" doesn't quite make sense. We can still multiply the sample index $i$ by any integer $m$ to obtain a new signal: $s(i)\mapsto s(mi)$. However, the manner in which these sample indices $i$ transform under multiplication by an integer follows the rules of [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic), not the rules of continuous dilation:
 
