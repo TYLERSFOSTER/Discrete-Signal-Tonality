@@ -7,6 +7,9 @@
 </p>
 
 # **Tonal Structures**<br><small>*for*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
+- **§0.** [Welcome](#tonal-structures-for-harmonic-motion-between-discrete-signals)
+- **§1.** [Harmonic movement between discrete signals](#-harmonic-movement-between-discrete-signals)
+- **§2.** [Installation and Setup](#-installation-and-setup)
 
 Welcome to `disig`, a Python package that allows users to compute and manipulate [...]
 
@@ -17,7 +20,16 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 - Finish TeX documentation
 ## 
 
-## Harmonic movement between discrete signals
+# 1. Harmonic movement between discrete signals
+- **1.1** [Tonnetze for continuous signals](##-tonnetez-for-continuous-signals)
+  - **1.1.1** [Euler's *tonnetz*](###-eulers-tonnetz)
+  - **1.1.2** [Modern tonnetze](###-modern-tonnetz)
+- **1.2** [*Tonality* for discrete audio signals](##-tonality-for-discrete-audio-signals)
+  - **1.2.1** [Musical intervals for discrete audio signals](###-musical-intervals-for-discrete-audio-signals)
+- **1.3** [Large-scale structure of discrete tonnetze](##-large-scale-structure-of-discrete-tonnetze)
+  - **1.3.1** [Orbits under the unit group from natural clusters](###-orbits-under-the-unit-group-from-natural-clusters)
+
+## Tonnetze for continuous signals
 
 ### Euler's *tonnetz*
 A [*tonnetz*](https://en.wikipedia.org/wiki/Tonnetz) (German for "*tone network*," with plural *tonnetze*) is a type of diagram that depicts the intervalic inte-relationship between a collection of pitches, pitch classes, or even chords. One of the first known examples of a tonnetz is a drawing that the mathematician [Leonard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) included in a 1739 treatise on music theory.
@@ -66,7 +78,7 @@ The diagram is interesting from a music theoretical perspecitive because to exhi
 [...]
 ## *Tonality* for discrete audio signals
 
-### Tonnetze for discrete audio signals
+### Musical intervals for discrete audio signals
 
 [...Play example...]
 
@@ -214,6 +226,14 @@ The diagram is interesting from a music theoretical perspecitive because to exhi
 
 [...]
 
+# Installation and Setup
+- [📦 Project Structure](##-project-structure)
+- [🚀 Installation](##-installation)
+- [🔧 Usage](##-usage)
+- [🧪 Running Tests](##-running-tests)
+- [📄 Documentation](##-documentation)
+- [🛠 Development](##-development)
+- [📝 License](##-license)
 
 ## 📦 Project Structure
 ```bash
