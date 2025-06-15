@@ -71,7 +71,7 @@ def signal_to_wav(
     assert isinstance(wav_sample_rate, int)
     assert wav_sample_rate > 0
 
-    N = len(signal)
+    modulus = len(signal)
 
     normalized_real_signal = signal.extract_real(normalize=True)
 
@@ -82,7 +82,7 @@ def signal_to_wav(
     wav_sample_count = math.floor(wav_duration * wav_sample_rate)
     for wav_sample_idx in range(wav_sample_count):
         signal_sample_index = math.floor(wav_sample_idx * wave_sample_period / signal_sample_period)
-        signal_sample_index = signal_sample_index%N
+        signal_sample_index = signal_sample_index%modulus
 
         value = normalized_real_signal[signal_sample_index]
         resampled_ostinato.append(value)

@@ -42,10 +42,11 @@ class Signal():
         """
         Return a new signal with time rescaled modularly by the given multiplier.
 
-        This performs modular index mapping t ↦ multiplier · t mod N, where N is the signal length.
+        This performs modular index mapping t ↦ multiplier · t mod modulus,
+            where modulus is the signal length.
 
         Args:
-            multiplier (int): Integer multiplier to apply in ℤ/Nℤ.
+            multiplier (int): Integer multiplier to apply in ℤ/modulusℤ.
 
         Returns:
             Signal: The rescaled signal.
@@ -73,7 +74,7 @@ class Signal():
         Retrieve the value at index `idx` modulo the signal length.
 
         Args:
-            idx (int): Index to access (wrapped mod N).
+            idx (int): Index to access (wrapped mod modulus).
 
         Returns:
             complex: Sample value at the modular index.
@@ -111,28 +112,28 @@ class Signal():
         return real_signal
 
 
-def character_signal(multiplier : int, N : int) -> Signal:
+def character_signal(multiplier : int, modulus : int) -> Signal:
     """
     Construct a character signal from the exponential character
-        χ(t) = exp(2πi · multiplier · t / N).
+        χ(t) = exp(2πi · multiplier · t / modulus).
 
     Args:
         multiplier (int): Frequency multiplier.
-        N (int): Signal length; must be ≥ 1.
+        modulus (int): Signal length; must be ≥ 1.
 
     Returns:
-        Signal: A complex exponential signal of length N.
+        Signal: A complex exponential signal of length modulus.
 
     Raises:
-        AssertionError: If N < 1 or inputs are not integers.
+        AssertionError: If modulus < 1 or inputs are not integers.
     """
     assert isinstance(multiplier, int)
-    assert isinstance(N, int)
-    assert N >= 1
+    assert isinstance(modulus, int)
+    assert modulus >= 1
 
-    theta = multiplier * (2 * np.pi / N)
+    theta = multiplier * (2 * np.pi / modulus)
 
-    sample_list = [complex(np.exp(complex(0,1) * theta * idx)) for idx in range(N)]
+    sample_list = [complex(np.exp(complex(0,1) * theta * idx)) for idx in range(modulus)]
 
     output_signal = Signal(sample_list)
 
