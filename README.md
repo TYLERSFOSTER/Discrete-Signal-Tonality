@@ -15,6 +15,7 @@ Welcome to `disig`, a Python package that allows users to compute and manipulate
 
 ## *TODO*s
 - Finish `./README.md`
+- separate visualization into two cases, one that can cluster and one that's `"neato"`
 - Generate examples with accompanying diagrams
 - pylint `./tests`
 - Finish TeX documentation
@@ -74,21 +75,26 @@ The diagram is interesting from a music theoretical perspecitive because to exhi
 </p>
 
 ### Modern tonnetze
+Tonnetze became an important tool to developments in [(musical) set theory](https://en.wikipedia.org/wiki/Set_theory_(music)) and in [neo-Riemann theory](https://en.wikipedia.org/wiki/Neo-Riemannian_theory). For exemplary use of tonnetz in musical analysis, see:
+- Dmitri Tymoczko. *A Geometry of Music: Harmony and Counterpoint in the Extended Common Practice*. Oxford Studies in Music Theory. Oxford University Press, March 2011. 480 pages.
+- Richard Cohn. *Audacious Euphony: Chromatic Harmony and the Triad’s Second Nature.* Oxford Studies in Music Theory. Oxford University Press, January 2012. 256 pages.
+- Edward Gollin and Alexander Rehding, editors. *The Oxford Handbook of Neo-Riemannian Music Theories*. Oxford Handbooks. Oxford University Press, May 2014. 632 pages.
 
-[...]
+The general pattern in all of this work is a partial import, into music theory, of category theoretical diagrams coming from representation theory, specifically from the repesentation theory of the circle group.
+
 ## *Tonality* for discrete audio signals
 
 ### Musical intervals for discrete audio signals
 
-[...Play example...]
+We can understand the edges in our modernized version of Euler's tonnetz as *multiplication* operations. Indeed, moving up a perfect fifth corresponds to rescaling playback speed of a continuous audio signal $f(t)$ by a factor of 3/2, i.e., $f(t)\mapsto f(3t/2)$. Likewise, moving up a major third corresponds to rescaling the playback speed of our continuous audio signal by a factor of 5/4, i.e., $f(t)\mapsto f(5t/4)$.
 
-[...]
+ If we impose [octave equivalence](https://en.wikipedia.org/wiki/Octave#Equivalence), then we ignore all factors of 2 when we rescale playback speed. Up to octave equivalence, movement up a perfect fifth amounts to rescaling the playback speed by any factor of 3, and movement up a major third amounts to rescaling the playback speed by a factor of 5, i.e., $f(t)\mapsto f(3t)$ and $f(t)\mapsto f(5t)$, respectively.
 
 <p align="center">
   <picture>
     <source srcset="docs/images/scaling_signals_continuous_dark.jpg" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/scaling_signals_continuous_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/scaling_signals_continuous_dark.jpg" alt="tonnetzB" width="600">
+    <img src="docs/images/scaling_signals_continuous_dark.jpg" alt="tonnetzB" width="700">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
