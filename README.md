@@ -90,6 +90,8 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
 
  If we impose [octave equivalence](https://en.wikipedia.org/wiki/Octave#Equivalence), then we ignore all factors of 2 when we rescale playback speed. Up to octave equivalence, movement up a perfect fifth amounts to rescaling the playback speed by any factor of 3, and movement up a major third amounts to rescaling the playback speed by a factor of 5, i.e., $f(t)\mapsto f(3t)$ and $f(t)\mapsto f(5t)$, respectively.
 
+ In this way, tonnetz-centric musical analysis can be derived from a theory of rescaling the playback speed of continous, periodic audio signals by integer factors:
+
 <p align="center">
   <picture>
     <source srcset="docs/images/scaling_signals_continuous_dark.jpg" media="(prefers-color-scheme: dark)">
@@ -98,7 +100,7 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Tonnetz for discrete audio signals with 36 samples
+  Moving a continuous periodic audio signal f(t) up two octaves via f(t) ↦ f(2t) ↦ f(4t)
 </p>
 
 [...]
@@ -111,7 +113,7 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-  Tonnetz for discrete audio signals with 36 samples
+  Moving a discrete periodic audio signal s(i) "up two octaves" via s(i) ↦ s(2i) ↦ s(4i)
 </p>
 
 [...]
@@ -244,12 +246,40 @@ We can understand the edges in our modernized version of Euler's tonnetz as *mul
 ## 📦 Project Structure
 ```bash
 .
-├── docs/ # External references, images, and LaTeX sources
-├── src/dissig/ # Python package source code
-├── tests/ # Unit tests
+├── LICENSE
+├── README.md # This file
+├── docs # External references, images, and LaTeX sources
+├── pdm.lock
 ├── pyproject.toml # Project configuration for PDM
-├── requirements.txt # Compatibility requirements (optional)
-└── README.md # This file
+├── pytest.ini
+├── requirements.txt # Compatibility requirement
+├── results
+│   ├── tonnetze_visuals
+│   └── wav_files
+│       ├── test_signal_*.wav
+├── src # Python package source code
+│   ├── dissig
+│       ├── __init__.py
+│       ├── core.py
+│       ├── io
+│       │   ├── __init__.py
+│       │   └── print_wav.py
+│       ├── signals
+│       │   ├── __init__.py
+│       │   └── discrete.py
+│       ├── tonnetze
+│       │   ├── __init__.py
+│       │   ├── networks.py
+│       │   └── visualizers.py
+│       └── utils
+│           ├── __init__.py
+│           ├── arithmetic.py
+│           └── primes.py
+└── tests # Unit tests
+    ├── io
+    ├── signals
+    ├── tonnetze
+    └── utils
 ```
 
 ## 🚀 Installation
