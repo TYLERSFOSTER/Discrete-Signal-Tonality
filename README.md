@@ -149,7 +149,6 @@ A lot of this mystery can be calrified by modeling the signals as vertices in a 
 
 The *discrete* tonnetz captures how *discrete* spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus. 
 
-That said, if you pass this graph naively into a graph visualization library like `networkx.drawing`, the result is nearly unreadable — cluttered, asymmetric, and blind to the underlying modular symmetries that actually organize the space. For a quick example, we can import `dissig`'s discrete tonnetz class `Tonnetz`:
 ```python
 >>> from dissig.tonnetze.networks import Tonnetz # dissig Tonnetz class
 ```
@@ -159,10 +158,13 @@ We instantiate the discrete tonnetz for discrete signals with sample count $=36$
 >>> integer_list = [2, 3, 5, 7] # Integers to induce edges in tonnetz
 >>> tonnetz = Tonnetz(modulus, integer_list) # Instantiate Tonnetz instance
 ```
-A naively application of `networkx.drawing` library 
+[...]
 ```python
->>> [...]
+>>> print(tonnetz.network)
+DiGraph with 36 nodes and 127 edges
 ```
+
+That said, if you pass this graph naively into a graph visualization library like `networkx.drawing`, the result is nearly unreadable — cluttered, asymmetric, and blind to the underlying modular symmetries that actually organize the space. For a quick example, we can import `dissig`'s discrete tonnetz class `Tonnetz`:
 <p align="center">
   <picture>
     <source srcset="docs/images/tonnetz_36_dark.jpg" media="(prefers-color-scheme: dark)">
