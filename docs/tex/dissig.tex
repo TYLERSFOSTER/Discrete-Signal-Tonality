@@ -53,6 +53,54 @@ we can say quite a bit about the strucutre of $\Gamma^{S/\Chi}_{\bullet}$. The p
 \end{subsection}
 
 \begin{subsection}{Continuous Fourier transform of discrete audio signals}
+I want to spend a moment trying to better understand continuous realizations of discrete audio signals.
+
+\begin{subsubsection}{Continuous realization of discrete audio signals}
+Consider the case where we realize a given discrete periodic audio signal $s:\mathbb{Z}/\ell\mathbb{Z}\longrightarrow\mathbb{C}$ as a continuous audio signal $f_{\!s}:\mathbb{S}^1\!\longrightarrow\mathbb{C}$ by fixing a wavelet $\psi(t)$ and interpreting the values $s(n)$ as coefficients for translates of this wavelet:
+$$
+f_{\!s}(t)
+\ :=\!\!
+\sum_{n\in\mathbb{Z}/\ell\mathbb{Z}}
+\!\!\!s(n)\ \psi\big(t\!-\!\tfrac{2\pi}{\ell}n\big).
+$$
+See \cite{Mallat}
+\end{subsubsection}
+
+\begin{subsubsection}{Fourier transform}
+In the special case that our wavelet $\psi(t)$ is the on/off pulse
+$$
+\psi(t)
+\ =\ 
+\left\{
+\begin{array}{cll}
+1 & \!\!\text{if}\ 0\le t<\tfrac{2\pi}{\ell}, \\
+0 & \!\!\text{otherwise,}
+\end{array}
+\right.
+$$
+the Fourier transform of the translate $\psi_{n}(t):=\psi\big(t\!-\!\tfrac{2\pi}{\ell}n\big)$ is
+$$
+\begin{array}{rcl}
+\!\!\widehat{\ \psi\ }\!\!{}_{n}(\omega)
+&\!\!=\!\!&
+e^{-i\tfrac{2\pi}{\ell}nt}\cdot\widehat{\ \psi\ }\!\!(\omega)
+\\
+&\!\!=\!\!&
+e^{-i\tfrac{2\pi}{\ell}nt}\cdot2\pi\cdot\text{sinc}\big(\tfrac{\ \!\omega\ \!}{\ell}\big)
+\end{array}
+$$
+[...]
+$$
+\widehat{\ f_{\!s}\ }\!\!(\omega)
+\ \ =\ 
+\sum_{n\in\mathbb{Z}/\ell\mathbb{Z}}\!\!s(n)\cdot e^{-i\tfrac{2\pi}{\ell}nt}\cdot\text{sinc}\big(\tfrac{\ \!\omega\ \!}{\ell}\big)
+$$
+
+\end{subsubsection}
+
+
+
+
 [...]
 \end{subsection}
 

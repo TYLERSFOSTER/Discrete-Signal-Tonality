@@ -16,120 +16,116 @@ from dissig.utils.arithmetic import unit_clusters
 
 
 def nx_viz(
-    tonnetz: Tonnetz,
+    tonnetz,
     filename: str,
-    arithmetic_clusters: bool=True,
     appearance_theme='light',
-) -> None:
-    """
-    Renders a Tonnetz graph and saves it as a .png file in the 'results/tonnetze_visuals' directory.
+    mode='dot',  # 'dot' uses clusters, no edge classes; 'neato' uses edge classes, no clusters
+    prune : bool=False,
+):
+    assert mode in ['dot', 'neato']
+    tone_graph, style = _prepare_graph(tonnetz, appearance_theme, mode, prune)
 
-    Optionally groups nodes into subgraphs (clusters) based on their multiplicative equivalence
-    classes modulo modulus, using the `unit_clusters` function.
+    if mode == 'dot':
+        _apply_dot_layout(tone_graph, tonnetz.sample_count, tonnetz.integer_list, filename, style)
+    elif mode == 'neato':
+        _apply_neato_layout(tone_graph, tonnetz.sample_count, tonnetz.integer_list, filename, style)
 
-    Args:
-        tonnetz (Tonnetz): A Tonnetz object containing the graph structure, sample count,
-                           and integer multipliers.
-        filename (str): The name of the file to save the rendered graph as (without file extension).
-        arithmetic_clusters (bool): If True, visually group nodes by arithmetic cluster structure
-                                    using multiplicative units modulo modulus. Default is True.
 
-    Returns:
-        None: The function writes a PNG file to disk but does not return a value.
-    """
-    assert appearance_theme in ['light', 'dark']
-    if appearance_theme == 'light':
-        red_hue = 'red'
-        blue_hue = 'blue'
-        background_hue = 'white'
-        text_hue = 'black'
-        gray_hue = 'lightgray'
-    elif appearance_theme == 'dark':
-        red_hue = 'salmon'
-        blue_hue = 'skyblue'
-        background_hue = 'black'
-        text_hue = 'white'
-        gray_hue = '0.35 0.25 0.25'
-    else:
-        red_hue = 'red'
-        blue_hue = 'blue'
-        background_hue = 'white'
-        text_hue = 'black'
-        gray_hue = 'lightgray'
-
-    tone_graph = tonnetz.network.copy()  # Work on a copy to allow edge removals
+def _prepare_graph(tonnetz, theme, mode, prune):
+    G = tonnetz.network.copy()
     modulus = tonnetz.sample_count
 
-    # Remove edges that do not map between two divisors of modulus
-    for u, v in list(tone_graph.edges()):
-        w = int(tone_graph[u][v]["weight"])
+    style = _theme_styles(theme)
+    for u, v in list(G.edges()):
+        w = int(G[u][v]["weight"])
+        v_alt = modulus if v == 0 else v
 
-        if v == 0:
-            v_alt = modulus
-        else:
-            v_alt = v
-        if (w != 0 and u != 0) and modulus%w == 0 and not (modulus%u == 0 and modulus%v_alt == 0):
-            tone_graph.remove_edge(u, v)
+        if (prune or mode=='neato') and (w != 0 and u != 0) and modulus % w == 0 and not (modulus % u == 0 and modulus % v_alt == 0):
+            G.remove_edge(u, v)
             continue
 
-        tone_graph[u][v]["label"] = str(w)
-        tone_graph[u][v]["arrowhead"] = "vee"
+        G[u][v]["label"] = str(w)
+        G[u][v]["arrowhead"] = "vee"
+        G[u][v].update(style="solid", penwidth="1", constraint="true")
 
-        if math.gcd(w, modulus) != 1:
-            tone_graph[u][v]["edge_type"] = "B"
-            tone_graph[u][v]["color"] = blue_hue
-            tone_graph[u][v]["style"] = "solid"
-            tone_graph[u][v]["penwidth"] = "1"
-            tone_graph[u][v]["fontcolor"] = blue_hue
-            tone_graph[u][v]["constraint"] = "true"
-        else:
-            tone_graph[u][v]["edge_type"] = "A"
-            tone_graph[u][v]["color"] = red_hue
-            tone_graph[u][v]["style"] = "solid"
-            tone_graph[u][v]["penwidth"] = "1"
-            tone_graph[u][v]["fontcolor"] = red_hue
-            tone_graph[u][v]["constraint"] = "true"
+        if mode == 'neato':
+            if math.gcd(w, modulus) != 1:
+                G[u][v].update(color=style["blue"], fontcolor=style["blue"], edge_type="B")
+            else:
+                G[u][v].update(color=style["red"], fontcolor=style["red"], edge_type="A")
+        else:  # dot mode — use neutral styling for all edges
+            G[u][v].update(color=style["text"], fontcolor=style["text"])
 
-    for n in tone_graph.nodes:
-        tone_graph.nodes[n]["shape"] = "circle"
-        tone_graph.nodes[n]["style"] = "filled"
-        tone_graph.nodes[n]["color"] = text_hue
-        tone_graph.nodes[n]["fillcolor"] = gray_hue
-        tone_graph.nodes[n]["fontcolor"] = text_hue
-        tone_graph.nodes[n]["fontsize"] = "18"
-        tone_graph.nodes[n]["fixedsize"] = "true"
-        tone_graph.nodes[n]["width"] = "0.35"
+    for n in G.nodes:
+        G.nodes[n].update(
+            shape="circle",
+            style="filled",
+            color=style["text"],
+            fillcolor=style["gray"],
+            fontcolor=style["text"],
+            fontsize="18",
+            fixedsize="true",
+            width="0.35",
+        )
 
-    tone_graph.graph["label"] = (
-        f"\nTonnetz for multipliers {tonnetz.integer_list} "
-        f"in \u2124/{modulus}\u2124\n"
+    return G, style
+
+
+def _apply_dot_layout(G, modulus, integer_list, filename, style):
+    aG = to_agraph(G)
+    aG.graph_attr.update(
+        label=f"\nTonnetz for multipliers {integer_list} in ℤ/{modulus}ℤ\n\n",
+        labelloc="t",
+        fontsize="24",
+        fontcolor=style["text"],
+        rankdir="UD",
+        compound="true",
+        nodesep="0.3",  # ← more horizontal spacing
+        ranksep="0.2", # ← more vertical spacing
+        bgcolor=style["bg"],
     )
-    tone_graph.graph["labelloc"] = "t"
-    tone_graph.graph["fontsize"] = "24"
-    tone_graph.graph["fontcolor"] = text_hue
-    tone_graph.graph["rankdir"] = "LR"
-    tone_graph.graph["compound"] = "true"
-    tone_graph.graph["nodesep"] = "0.1"
-    tone_graph.graph["ranksep"] = "2.1"
-    tone_graph.graph["bgcolor"] = background_hue  # <--- This line sets the full image background
 
-    a_graph = to_agraph(tone_graph)
+    clusters = unit_clusters(modulus)
+    for _, (cluster_name, members) in enumerate(clusters.items()):
+        cluster_idx = cluster_name.replace('cluster_','')
+        sg = aG.add_subgraph(
+            members,
+            name=f"cluster_{cluster_idx}",
+            label=f"ℤ/{modulus}ℤ-orbit of {cluster_idx}",
+            color="red",
+            fontsize="16",
+            fontcolor="red"
+        )
 
-    if arithmetic_clusters:
-        cluster_map = unit_clusters(modulus)
-    else:
-        cluster_map = {}
-    print("CLUSTER_MAP:", cluster_map)
+    aG.layout(prog="dot")
+    _save_graph_image(aG, filename)
 
-    for _, (representative, _) in enumerate(cluster_map.items()):
-        thing = representative.replace('cluster_', '').replace('cluster', '')
-        thing = int(thing)
 
-    a_graph.layout(prog="neato")
+def _apply_neato_layout(G, modulus, integer_list, filename, style):
+    aG = to_agraph(G)
+    aG.graph_attr.update(
+        label=f"\nTonnetz for multipliers {integer_list} in ℤ/{modulus}ℤ\n",
+        labelloc="t",
+        fontsize="24",
+        fontcolor=style["text"],
+        bgcolor=style["bg"],
+    )
+    aG.layout(prog="neato")
+    _save_graph_image(aG, filename)
 
-    project_root = Path(__file__).resolve().parent.parent.parent.parent
+
+def _save_graph_image(aG, filename):
+    project_root = Path(__file__).resolve().parents[3]
     output_dir = project_root / "results" / "tonnetze_visuals"
     output_dir.mkdir(parents=True, exist_ok=True)
-
     save_path = output_dir / f"{filename}.png"
-    a_graph.draw(save_path)
+    aG.draw(save_path)
+
+
+def _theme_styles(theme):
+    return {
+        'light': dict(red='red', blue='blue', bg='white', text='black', gray='lightgray'),
+        'dark': dict(red='salmon', blue='skyblue', bg='black', text='white', gray='0.35 0.25 0.25'),
+    }.get(theme, {
+        'red': 'red', 'blue': 'blue', 'bg': 'white', 'text': 'black', 'gray': 'lightgray'
+    })

@@ -11,23 +11,37 @@
 - **§1.** [Harmonic movement between discrete signals](#harmonic-movement-between-discrete-signals)
 - **§2.** [Installation and Setup](#-installation-and-setup)
 
-Welcome to `disig`, a Python package that allows users to compute and manipulate [...]
+Welcome to `disig`, a Python package for exploring the tonal geometry of discrete periodic audio signals.
+
+Inspired by Euler’s original Tonnetz and its modern reinterpretations, disig extends these structures to the digital domain—where time is sampled, frequencies are modular, and multiplication replaces dilation.
+
+At the core of this project is a categorical and signal-theoretic perspective on harmony, treating musical intervals as modular rescalings and organizing them into richly structured networks. These discrete tonnetze visualize the harmonic motion between audio signals under arithmetic transformations, revealing patterns that echo deep number-theoretic symmetries.
+
+The underlying structure is a manifestation of a category of representations, where signals transform functorially under modular arithmetic operations. Tonnetz are diagrams of morphisms in this category that encode how spectral content behaves under group actions. This representation-theoretic framing situates tonal motion within a broader categorical picture: musical intervals and harmonic movement, and larger tonal structures all emerge from group actions on spectral data.
+
+The library includes:
+  - Tools for generating and analyzing Tonnetz diagrams over arbitrary moduli
+  - Visualizers for arithmetic and geometric clusters in signal space
+  - Audio synthesis utilities for testing tonal structures directly via WAV playback
+
+Whether you're a theorist, signal processing researcher, or just curious about how number theory meets timbre, disig provides an experimental playground for navigating the space of harmonic motion in modular time.
 
 ## *TODO*s
 - Finish `./README.md`
 - separate visualization into two cases, one that can cluster and one that's `"neato"`
 - Generate examples with accompanying diagrams
+- Analyze FT and STFT of step-realization of discrete audio signals
 ## 
 
 # 1. Harmonic movement between discrete signals
-- **1.1** [Tonnetze for continuous signals](##-tonnetez-for-continuous-signals)
-  - **1.1.1** [Euler's *tonnetz*](###-eulers-tonnetz)
-  - **1.1.2** [Modern tonnetze](###-modern-tonnetz)
-- **1.2** [*Tonality* for discrete audio signals](##-tonality-for-discrete-audio-signals)
-  - **1.2.1** [Musical intervals for discrete audio signals](###-musical-intervals-for-discrete-audio-signals)
-  - **1.2.2** [Tonnetze for discrete audio signals](###-tonnetze-for-discrete-audio-signals)
-- **1.3** [Large-scale structure of discrete tonnetze](##-large-scale-structure-of-discrete-tonnetze)
-  - **1.3.1** [Orbits under the unit group from natural clusters](###-orbits-under-the-unit-group-from-natural-clusters)
+- **1.1** [Tonnetze for continuous signals](##tonnetez-for-continuous-signals)
+  - **1.1.1** [Euler's *tonnetz*](###eulers-tonnetz)
+  - **1.1.2** [Modern tonnetze](###modern-tonnetz)
+- **1.2** [*Tonality* for discrete audio signals](##tonality-for-discrete-audio-signals)
+  - **1.2.1** [Musical intervals for discrete audio signals](###musical-intervals-for-discrete-audio-signals)
+  - **1.2.2** [Tonnetze for discrete audio signals](###tonnetze-for-discrete-audio-signals)
+- **1.3** [Large-scale structure of discrete tonnetze](##large-scale-structure-of-discrete-tonnetze)
+  - **1.3.1** [Orbits under the unit group from natural clusters](###orbits-under-the-unit-group-from-natural-clusters)
 
 ## Tonnetze for continuous signals
 
@@ -79,9 +93,11 @@ Tonnetze became an important tool to developments in [(musical) set theory](http
 - Richard Cohn. *Audacious Euphony: Chromatic Harmony and the Triad’s Second Nature.* Oxford Studies in Music Theory. Oxford University Press, January 2012. 256 pages.
 - Edward Gollin and Alexander Rehding, editors. *The Oxford Handbook of Neo-Riemannian Music Theories*. Oxford Handbooks. Oxford University Press, May 2014. 632 pages.
 
-***["Controversy"]***
+The general pattern in all of this work is a partial import, into music theory, of category theoretical diagrams coming from representation theory. Musical intervals, harmonic movement, and larger tonal structures all emerge from the action of the multiplicative monoid of integers $\mathbb{Z}$ on representations of the circle group $\mathbb{S}^{1}$.
 
-The general pattern in all of this work is a partial import, into music theory, of category theoretical diagrams coming from representation theory, specifically from the repesentation theory of the circle group.
+Neo-Riemannian theory generalizies tonnetze so that they model transformations between not just pitches, but between chords and more general musical datastructures. This use of tonnetze abstracts away from [common practice](https://en.wikipedia.org/wiki/Common_practice_period) tonal function and voice-leading, and some reject this development as overly formal and historically detached. But much of this suspicion stems from a misunderstanding of the depth of insight these tools offer. Far from being mere abstractions, tonnetze reveal profound geometries underlying harmonic motion — geometries that remain relevant even beyond traditional tonal music.
+
+Embracing this perspective, we explore the tonnetz not as a historical artifact or static diagram, but as a dynamic analytic and generative tool for navigating the musical content of signals themselves.
 
 ## *Tonality* for discrete audio signals
 
@@ -129,6 +145,9 @@ If we take this proposal seriously, we arrive at the following:
 ### Tonnetze for discrete audio signals
 If you've played with 8-bit tones, you may already have a sense that for discrete periodic audio signals, movement along musical intervals doesn't work in exactly the same way as it does for continous periodic audio signals. Discrete audio signals have complex timbres that seem to have mysterious relationships to one another.
 
+A lot of this mystery can be calrified by modeling the signals as vertices in a directed graph $\text{Ton}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)$ where edges represent multiplication by fixed integers modulo the sample count. The set of nodes in this graph is $$\text{Ton}_{0}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)\ :=\ \mathbb{Z}/\ell\mathbb{Z}$$ and the set of edges is $$\text{Ton}_{1}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)\ :=\ \mathbb{Z}/\ell\mathbb{Z}\times$$
+This graph captures how spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus. However, if you pass this graph naively into a tool like NetworkX’s default layout, the result is nearly unreadable—cluttered, asymmetric, and blind to the underlying modular symmetries that actually organize the space.
+
 <p align="center">
   <picture>
     <source srcset="docs/images/tonnetz_36_dark.jpg" media="(prefers-color-scheme: dark)">
@@ -150,11 +169,32 @@ If you've played with 8-bit tones, you may already have a sense that for discret
 
 [...]
 
+```python
+>>> from dissig.tonnetze.networks import Tonnetz
+>>> from dissig.tonnetze.visualizers import nx_viz
+```
+
+[...]
+
+```python
+>>> modulus = 36
+>>> integer_list = [2, 3, 5]
+```
+
+[...]
+
+```python
+>>> tonnetz = Tonnetz(modulus, integer_list)
+>>> nx_viz(tonnetz, "test_viz", mode='dot')
+```
+
+[...]
+
 <p align="center">
   <picture>
-    <source srcset="docs/images/36_with_clusters_dark.jpg" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/36_with_clusters_dark.png" media="(prefers-color-scheme: dark)">
     <source srcset="docs/images/36_with_clusters_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/36_with_clusters_dark.jpg" alt="tonnetzB" width="650">
+    <img src="docs/images/36_with_clusters_dark.jpg" alt="tonnetzB" width="750">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
@@ -208,9 +248,9 @@ If you've played with 8-bit tones, you may already have a sense that for discret
 
 <p align="center">
   <picture>
-    <source srcset="docs/images/2-3-5-7_in_35_dark.png" media="(prefers-color-scheme: dark)">
-    <source srcset="docs/images/2-3-5-7_in_35_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/2-3-5-7_in_35_dark.png" alt="tonnetzB" width="530">
+    <source srcset="docs/images/2-3-5-7_in_36_dark.png" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/2-3-5-7_in_36_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/2-3-5-7_in_36_dark.png" alt="tonnetzB" width="490">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
@@ -221,9 +261,9 @@ If you've played with 8-bit tones, you may already have a sense that for discret
 
 <p align="center">
   <picture>
-    <source srcset="docs/images/2-3-5-7_in_36_dark.png" media="(prefers-color-scheme: dark)">
-    <source srcset="docs/images/2-3-5-7_in_36_light.jpg" media="(prefers-color-scheme: light)">
-    <img src="docs/images/2-3-5-7_in_36_dark.png" alt="tonnetzB" width="490">
+    <source srcset="docs/images/2-3-5-7_in_35_dark.png" media="(prefers-color-scheme: dark)">
+    <source srcset="docs/images/2-3-5-7_in_35_light.jpg" media="(prefers-color-scheme: light)">
+    <img src="docs/images/2-3-5-7_in_35_dark.png" alt="tonnetzB" width="530">
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
@@ -341,7 +381,7 @@ pdm run pytest
 │       │   │   ├── Tonnetz # Main Tonnetz class
 │       │   │   │   ├── generate_weighted_edges()
 │       │   │   │   └── generate_network()
-│       │   │   └── SignalTonnetz # Tonnetz decorated with transformed signals
+│       │   │   └── SignalTonnetz # Tonnetz decorated with signals
 │       │   │       ├── generate_weighted_edges()
 │       │   │       ├── generate_network()
 │       │   │       └── propogate_signal()
