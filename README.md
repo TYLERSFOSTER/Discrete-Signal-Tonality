@@ -200,7 +200,7 @@ But now, let us visulaize the tonnetz using `nx_viz` in `'dot'` mode:
 ...
 >>> nx_viz(tonnetz, "test_viz", mode='dot')
 ```
-We get the following, better organized visualization of the same discrete tonnetz **[FIX - NO 7]**:
+We get the following, better organized visualization of the same discrete tonnetz:
 
 <p align="center">
   <picture>
@@ -212,9 +212,11 @@ We get the following, better organized visualization of the same discrete tonnet
 <p align="center" style="font-size: 80%;">
 </p>
 
-### Orbit cluster are arranged along divisor lattice
+### Orbit cluster are arranged along divisor grid
 
-[...]
+Complementary to the group of units inside $\mathbb{Z}/\ell\mathbb{Z}$, there's a grid formed by the divisors of $\ell$. Specifically, if we let $$\ell\ =\ p_{1}^{e_{1}}p_{2}^{e_{2}}\cdots p_{k}^{e_{k}}$$ denote the prime factorization of our sample count $\ell$, then we get a grid inside our tonnetz whenever we include the edges correpsonding to the prime factor integers $p_1$, %p_2$, ..., $p_{k}$. This grid starts at the node $1$, and is swept out by powers of these prime factors $p_1$ through $p_k$.
+
+Here are several examples:
 
 <p align="center">
   <picture>
@@ -227,8 +229,6 @@ We get the following, better organized visualization of the same discrete tonnet
     [...CAPTION...]
 </p>
 
-[...]
-
 <p align="center">
   <picture>
     <source srcset="docs/images/1_to_36_dark.jpg" media="(prefers-color-scheme: dark)">
@@ -239,8 +239,6 @@ We get the following, better organized visualization of the same discrete tonnet
 <p align="center" style="font-size: 80%;">
     [...CAPTION...]
 </p>
-
-[...]
 
 <p align="center">
   <picture>
