@@ -147,7 +147,7 @@ If you've played with 8-bit tones, you may already have a sense that for discret
 
 A lot of this mystery can be calrified by modeling the signals as vertices in a directed graph that we call a *discrete tonnetz*, which depicts the multiplicative action of integers, modulo our sample count, as a categorical diagram. The set of nodes in this *discrete tonnetz* graph is the set of integers modulo our sample count, and each fixed integer $m$ induces a family of edges $$n\xrightarrow{m}mn\ (\text{mod}\ \ell)$$ in the *discrete tonnetz* graph.
 
-The *discrete* tonnetz captures how *discrete* spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus. 
+The *discrete* tonnetz captures how *discrete* spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus.
 
 ```python
 >>> from dissig.tonnetze.networks import Tonnetz # dissig Tonnetz class
@@ -178,32 +178,29 @@ That said, if you pass this graph naively into a graph visualization library lik
 
 ## Large-scale structure of discrete tonnetze
 
-[...]
+To better display discrete tonnetze, we need to use results from early number theory about the structure of the ring $\mathbb{Z}/\ell\mathbb{Z}$.
 
 ### Orbits under the unit group from natural clusters
 
-[...]
+The subset $(\mathbb{Z}/\ell\mathbb{Z})^{\times}$ of elements in $\mathbb{Z}/\ell\mathbb{Z}$ that are invertible under multiplication from a group called the *group of units* or the *unit group*. For any element $n\in\mathbb{Z}/\ell\mathbb{Z}$, we can consider its $(\mathbb{Z}/\ell\mathbb{Z})^{\times}$-orbit $(\mathbb{Z}/\ell\mathbb{Z})^{\times}\cdot n=\{mn\ (\text{mod}\ \ell):m\in (\mathbb{Z}/\ell\mathbb{Z})^{\times}\}$.
 
+These orbits form natural clusters in any discrete tonnetz. In fact, if we add all arrows coming from $(\mathbb{Z}/\ell\mathbb{Z})^{\times}$, each of these clusters forms a bi-directed [clique](https://en.wikipedia.org/wiki/Clique_(graph_theory)). and we can use them to better organize our visualation.
+
+In `dissig` provides a cluster-based visualization of any discrete tonnetz via the `mode='dot'` keyword argument of the `nx_viz` function. To provide an example, let us use our same discrete tonnetz for sample count $36$ and edges induced by $2$, $3$, and $5$:
 ```python
 >>> from dissig.tonnetze.networks import Tonnetz
->>> from dissig.tonnetze.visualizers import nx_viz
-```
-
-[...]
-
-```python
+...
 >>> modulus = 36
 >>> integer_list = [2, 3, 5]
-```
-
-[...]
-
-```python
 >>> tonnetz = Tonnetz(modulus, integer_list)
+```
+But now, let us visulaize the tonnetz using `nx_viz` in `'dot'` mode:
+```python
+>>> from dissig.tonnetze.visualizers import nx_viz
+...
 >>> nx_viz(tonnetz, "test_viz", mode='dot')
 ```
-
-[...]
+We get the following, better organized visualization of the same discrete tonnetz **[FIX - NO 7]**:
 
 <p align="center">
   <picture>
@@ -256,7 +253,6 @@ That said, if you pass this graph naively into a graph visualization library lik
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
 </p>
 
 [...]
