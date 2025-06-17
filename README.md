@@ -7,8 +7,8 @@
 </p>
 
 # **Tonal Structures**<br><small>*for*</small> **Harmonic Motion**<br><small>*between*</small> **Discrete Signals**
-- **§0.** [Welcome](#tonal-structures-for-harmonic-motion-between-discrete-signals)
-- **§1.** [Harmonic movement between discrete signals](#-harmonic-movement-between-discrete-signals)
+- **§0.** [Welcome](#tonal-structures)
+- **§1.** [Harmonic movement between discrete signals](#harmonic-movement-between-discrete-signals)
 - **§2.** [Installation and Setup](#-installation-and-setup)
 
 Welcome to `disig`, a Python package that allows users to compute and manipulate [...]
