@@ -282,6 +282,14 @@ This graph captures how spectral energy shifts under modular scaling, and reveal
 
 [...]
 
+```python
+>>> modulus = 35 # Change modulus to 35
+>>> tonnetz = Tonnetz(modulus, integer_list) # Use previous integer_list
+>>> nx_viz(tonnetz, "test_viz", mode='neato', appearance_theme='dark')
+```
+
+[...]
+
 <p align="center">
   <picture>
     <source srcset="docs/images/2-3-5-7_in_35_dark.png" media="(prefers-color-scheme: dark)">
@@ -292,6 +300,15 @@ This graph captures how spectral energy shifts under modular scaling, and reveal
 <p align="center" style="font-size: 80%;">
     [...CAPTION...]
 </p>
+
+[...]
+
+```python
+>>> modulus = 216 # Change modulus to 216 == 2**3 * 3**3
+>>> integer_list = [2, 3, 5, 11, 13] # New integer_list
+>>> tonnetz = Tonnetz(modulus, integer_list)
+>>> nx_viz(tonnetz, "test_viz", mode='neato', appearance_theme='dark')
+```
 
 [...]
 
