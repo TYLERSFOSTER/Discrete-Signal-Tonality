@@ -158,7 +158,7 @@ We instantiate the discrete tonnetz for discrete signals with sample count $=36$
 >>> integer_list = [2, 3, 5, 7] # Integers to induce edges in tonnetz
 >>> tonnetz = Tonnetz(modulus, integer_list) # Instantiate Tonnetz instance
 ```
-[...]
+We can recover the graph underlying the tonnetz as a `networkx.DiGraph` instance via the `Tonnetz.network` attribute:
 ```python
 >>> print(tonnetz.network)
 DiGraph with 36 nodes and 127 edges
@@ -210,10 +210,7 @@ We get the following, better organized visualization of the same discrete tonnet
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
 </p>
-
-[...]
 
 ### Orbit cluster are arranged along divisor lattice
 
@@ -253,6 +250,7 @@ We get the following, better organized visualization of the same discrete tonnet
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
+    [...CAPTION...]
 </p>
 
 [...]
