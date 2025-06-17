@@ -145,7 +145,9 @@ If we take this proposal seriously, we arrive at the following:
 ### Tonnetze for discrete audio signals
 If you've played with 8-bit tones, you may already have a sense that for discrete periodic audio signals, movement along musical intervals doesn't work in exactly the same way as it does for continous periodic audio signals. Discrete audio signals have complex timbres that seem to have mysterious relationships to one another.
 
-A lot of this mystery can be calrified by modeling the signals as vertices in a directed graph $\text{Ton}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)$ where edges represent multiplication by fixed integers modulo the sample count. The set of nodes in this graph is $$\text{Ton}_{0}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)\ :=\ \mathbb{Z}/\ell\mathbb{Z}$$ and the set of edges is $$\text{Ton}_{1}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)\ :=\ \mathbb{Z}/\ell\mathbb{Z}\times$$
+A lot of this mystery can be calrified by modeling the signals as vertices in a directed graph $$\text{Ton}_{\ast}\big(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k]\big)$$ or just $\text{Ton}_{\ast}$ for short, where edges represent multiplication by fixed integers modulo the sample count. The set of nodes in this graph is $$\text{Ton}_{0}\ \ :=\ \ \mathbb{Z}/\ell\mathbb{Z}$$ and the set of edges is $$\text{Ton}_{1}\ \ :=\ \ \mathbb{Z}/\ell\mathbb{Z}\ \!\times\ \![m_1,\dots,m_k]$$
+with source and target maps $\partial_0,\partial_1:\text{Ton}_{1}\longrightarrow\text{Ton}_0$ that identify each pair $(n,m)$ with the edge $$n\xrightarrow{m}mn\ (\text{mod}\ \ell)$$
+
 This graph captures how spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus. However, if you pass this graph naively into a tool like NetworkX’s default layout, the result is nearly unreadable—cluttered, asymmetric, and blind to the underlying modular symmetries that actually organize the space.
 
 <p align="center">
@@ -243,6 +245,27 @@ This graph captures how spectral energy shifts under modular scaling, and reveal
 <p align="center" style="font-size: 80%;">
     [...CAPTION...]
 </p>
+
+[...]
+
+```python
+>>> from dissig.tonnetze.networks import Tonnetz
+>>> from dissig.tonnetze.visualizers import nx_viz
+```
+
+[...]
+
+```python
+>>> modulus = 36
+>>> integer_list = [2, 3, 5, 7]
+>>> tonnetz = Tonnetz(modulus, integer_list)
+```
+
+[...]
+
+```python
+>>> nx_viz(tonnetz, "test_viz", mode='neato', appearance_theme='dark')
+```
 
 [...]
 
