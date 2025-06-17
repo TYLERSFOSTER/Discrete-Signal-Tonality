@@ -145,11 +145,24 @@ If we take this proposal seriously, we arrive at the following:
 ### Tonnetze for discrete audio signals
 If you've played with 8-bit tones, you may already have a sense that for discrete periodic audio signals, movement along musical intervals doesn't work in exactly the same way as it does for continous periodic audio signals. Discrete audio signals have complex timbres that seem to have mysterious relationships to one another.
 
-A lot of this mystery can be calrified by modeling the signals as vertices in a directed graph $$\text{Ton}_{\ast}(\mathbb{Z}/\ell\mathbb{Z},\ [m_1,\dots,m_k])$$ or just $\text{Ton}_{\ast}$ for short, where edges represent multiplication by fixed integers modulo the sample count. The set of nodes in this graph is $$\text{Ton}_{0}\ \ :=\ \ \mathbb{Z}/\ell\mathbb{Z}$$ and the set of edges is $$\text{Ton}_{1}\ \ :=\ \ \mathbb{Z}/\ell\mathbb{Z}\ \!\times\ \![m_1,\dots,m_k]$$
-with source and target maps $\partial_0,\partial_1:\text{Ton}_{1}\longrightarrow\text{Ton}_0$ that identify each pair $(n,m)$ with the edge $$n\xrightarrow{m}mn\ (\text{mod}\ \ell)$$
+A lot of this mystery can be calrified by modeling the signals as vertices in a directed graph that we call a *discrete tonnetz*, which depicts the multiplicative action of integers, modulo our sample count, as a categorical diagram. The set of nodes in this *discrete tonnetz* graph is the set of integers modulo our sample count, and each fixed integer $m$ induces a family of edges $$n\xrightarrow{m}mn\ (\text{mod}\ \ell)$$ in the *discrete tonnetz* graph.
 
-This graph captures how *discrete* spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus. However, if you pass this graph naively into a graph visualization library like `networkx.drawing`, the result is nearly unreadable — cluttered, asymmetric, and blind to the underlying modular symmetries that actually organize the space:
+The *discrete* tonnetz captures how *discrete* spectral energy shifts under modular scaling, and reveals surprising orbit structures tied to the arithmetic of the modulus. 
 
+That said, if you pass this graph naively into a graph visualization library like `networkx.drawing`, the result is nearly unreadable — cluttered, asymmetric, and blind to the underlying modular symmetries that actually organize the space. For a quick example, we can import `dissig`'s discrete tonnetz class `Tonnetz`:
+```python
+>>> from dissig.tonnetze.networks import Tonnetz # dissig Tonnetz class
+```
+We instantiate the discrete tonnetz for discrete signals with sample count $=36$, with edges corresponding to integers $2$, $3$, $5$, and $7$:
+```python
+>>> modulus = 36 # Sample count for our discrete audio signals
+>>> integer_list = [2, 3, 5, 7] # Integers to induce edges in tonnetz
+>>> tonnetz = Tonnetz(modulus, integer_list) # Instantiate Tonnetz instance
+```
+A naively application of `networkx.drawing` library 
+```python
+>>> [...]
+```
 <p align="center">
   <picture>
     <source srcset="docs/images/tonnetz_36_dark.jpg" media="(prefers-color-scheme: dark)">
