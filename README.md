@@ -26,10 +26,9 @@ The library includes:
 
 Whether you're a theorist, signal processing researcher, or just curious about how number theory meets timbre, disig provides an experimental playground for navigating the space of harmonic motion in modular time.
 
-## *TODO*s
-- Finish `./README.md`
-- separate visualization into two cases, one that can cluster and one that's `"neato"`
-- Generate examples with accompanying diagrams
+## *TODO*s...
+- Add § to README about `dissigs` tools for evolving discrete signals along discrete tonnetze
+- Fix 0's in divisor grid images in `README.md`
 - Analyze FT and STFT of step-realization of discrete audio signals
 ## 
 
@@ -186,7 +185,7 @@ The subset $(\mathbb{Z}/\ell\mathbb{Z})^{\times}$ of elements in $\mathbb{Z}/\el
 
 These orbits form natural clusters in any discrete tonnetz. In fact, if we add all arrows coming from $(\mathbb{Z}/\ell\mathbb{Z})^{\times}$, each of these clusters forms a bi-directed [clique](https://en.wikipedia.org/wiki/Clique_(graph_theory)). and we can use them to better organize our visualation.
 
-In `dissig` provides a cluster-based visualization of any discrete tonnetz via the `mode='dot'` keyword argument of the `nx_viz` function. To provide an example, let us use our same discrete tonnetz for sample count $36$ and edges induced by $2$, $3$, and $5$:
+In `dissig`, we provide a cluster-based visualization of any discrete tonnetz via the `mode='dot'` keyword argument of the `nx_viz` function. To provide an example, let us use our same discrete tonnetz for sample count $36$ and edges induced by $2$, $3$, and $5$:
 ```python
 >>> from dissig.tonnetze.networks import Tonnetz
 ...
@@ -216,7 +215,7 @@ We get the following, better organized visualization of the same discrete tonnet
 
 Complementary to the group of units inside $\mathbb{Z}/\ell\mathbb{Z}$, there's a grid formed by the divisors of $\ell$. Specifically, if we let $$\ell\ =\ p_{1}^{e_{1}}p_{2}^{e_{2}}\cdots p_{k}^{e_{k}}$$ denote the prime factorization of our sample count $\ell$, then we get a grid inside our tonnetz whenever we include the edges correpsonding to the prime factor integers $p_1$, %p_2$, ..., $p_{k}$. This grid starts at the node $1$, and is swept out by powers of these prime factors $p_1$ through $p_k$.
 
-Here are several examples:
+Here are several examples. To start, here's the 1-dimensional grid formed by the divisors of $16$, with arrows corresponding to multiplication by the only prime factor, $2$:
 
 <p align="center">
   <picture>
@@ -226,8 +225,10 @@ Here are several examples:
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
+    Grid of divisors inside the discrete tonnetz for sample count $16$ 
 </p>
+
+Next, here's the 2-dimensional grid formed by the divisors of $36$, with arrows corresponding to multiplication by the two prime factors, $2$ and $3$:
 
 <p align="center">
   <picture>
@@ -237,8 +238,10 @@ Here are several examples:
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
+    Grid of divisors inside the discrete tonnetz for sample count $36$ 
 </p>
+
+And finally, here's the 3-dimensional grid formed by the divisors of $60$, with arrows corresponding to multiplication by the three prime factors, $2$, $3$, and $5$:
 
 <p align="center">
   <picture>
@@ -248,17 +251,17 @@ Here are several examples:
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
+    Grid of divisors inside the discrete tonnetz for sample count $60$
 </p>
 
-[...]
+In `dissig`, we also provide a visualization of any discrete tonnetz via the `mode='neato'` keyword argument of the `nx_viz` function:
 
 ```python
 >>> from dissig.tonnetze.networks import Tonnetz
 >>> from dissig.tonnetze.visualizers import nx_viz
 ```
 
-[...]
+To provide an example, let us return to our discrete tonnetz for sample count $36$ and edges induced by $2$, $3$, and $5$. This time, we also include edges induced by $7$:
 
 ```python
 >>> modulus = 36
@@ -266,13 +269,13 @@ Here are several examples:
 >>> tonnetz = Tonnetz(modulus, integer_list)
 ```
 
-[...]
+We get rather well organized version of this tonnetz if we pass to the `nx_viz` function with keyword argument `'neato'`:
 
 ```python
->>> nx_viz(tonnetz, "test_viz", mode='neato', appearance_theme='dark')
+>>> nx_viz(tonnetz, "test_viz", mode='neato')
 ```
 
-[...]
+The resulting visualization does a fantastic job as clarifying the complimentary natrue of the grid of divisors (blue) and the unit group orbits (red):
 
 <p align="center">
   <picture>
@@ -282,18 +285,16 @@ Here are several examples:
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
+    A even better organized version of the tonnetz for sample count 36
 </p>
 
-[...]
+Notice how subtracting $1$ do the sample count leads to a substantially different discrete tonnetz:
 
 ```python
 >>> modulus = 35 # Change modulus to 35
 >>> tonnetz = Tonnetz(modulus, integer_list) # Use previous integer_list
 >>> nx_viz(tonnetz, "test_viz", mode='neato', appearance_theme='dark')
 ```
-
-[...]
 
 <p align="center">
   <picture>
@@ -303,10 +304,10 @@ Here are several examples:
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
+    A even better organized version of the tonnetz for sample count 35
 </p>
 
-[...]
+One of the major advantages of thse better organized visualizations is that they let us draw quick conlusions about tonnetze for relatively large sample counts:
 
 ```python
 >>> modulus = 216 # Change modulus to 216 == 2**3 * 3**3
@@ -314,8 +315,6 @@ Here are several examples:
 >>> tonnetz = Tonnetz(modulus, integer_list)
 >>> nx_viz(tonnetz, "test_viz", mode='neato', appearance_theme='dark')
 ```
-
-[...]
 
 <p align="center">
   <picture>
@@ -325,7 +324,7 @@ Here are several examples:
   </picture>
 </p>
 <p align="center" style="font-size: 80%;">
-    [...CAPTION...]
+    A even better organized version of the tonnetz for sample count 216
 </p>
 
 [...]
