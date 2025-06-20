@@ -68,6 +68,10 @@ class Signal():
     def __len__(self):
         """Return the number of samples in the signal."""
         return self.sample_count
+    
+    def __getitem__(self, idx : int) -> complex:
+        """__getitem__ method"""
+        return self.forward(idx)
 
     def forward(self, idx : int) -> complex:
         """
