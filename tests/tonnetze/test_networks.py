@@ -7,8 +7,12 @@ from unittest.mock import MagicMock
 
 import pytest
 import networkx as nx
+import numpy as np
 
 from dissig.tonnetze.networks import Tonnetz, SignalTonnetz
+
+from dissig.signals.discrete import Signal
+from dissig.tonnetze.networks import SignalTonnetz
 
 
 @pytest.mark.parametrize(
@@ -127,3 +131,20 @@ def test_signaltonnetz_signal_length_validation(tonic_len, should_raise):
     else:
         tonnetz = SignalTonnetz(signal, [1])
         assert isinstance(tonnetz.network, nx.DiGraph)
+
+
+@pytest.mark.parametrize("samples", [
+    [1, 0, 0, 0],
+    [1, 2, 3, 4],
+    [0, 1, 0, 0],
+])
+def test_total_signal(samples):
+    tonic = Signal([complex(x, 0) for x in samples])
+    st = SignalTonnetz(tonic, integer_list=[1], include_loops=True, include_zero=False)
+
+    expected = np.zeros(len(samples), dtype=complex)
+    for i in range(1, len(samples)):  # because include_zero=False
+        expected += np.array(tonic.scale_time_by(i).underlying_signal)
+
+    result = np.array(st.total_signal().underlying_signal)
+    assert result == pytest.approx(expected, abs=1e-6)

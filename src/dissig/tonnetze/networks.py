@@ -6,6 +6,7 @@ from __future__ import annotations
 import copy
 
 import networkx as nx
+import numpy as np
 
 from dissig.signals.discrete import Signal
 
@@ -157,3 +158,18 @@ class SignalTonnetz(Tonnetz):
             new_graph.nodes[vertex]["signal"] = rescaled_signal
 
         return new_graph
+    
+    def total_signal(self) -> Signal:
+        total_signal = np.zeros((self.sample_count), dtype=complex)
+
+        for node in self.network.nodes:
+            current_signal = self.network.nodes[node]['signal']
+            current_signal = current_signal.underlying_signal
+            current_signal =  np.array(current_signal, dtype=complex)
+
+            total_signal = total_signal + current_signal
+
+        total_signal = total_signal.tolist()
+        total_signal = Signal(total_signal)
+
+        return total_signal
